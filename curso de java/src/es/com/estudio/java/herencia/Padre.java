@@ -5,5 +5,6 @@ public class Padre {
 	{
 		System.out.println("METODO() EN EL PADRE");
 		
+		
 	}
 }
