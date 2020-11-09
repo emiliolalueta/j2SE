@@ -115,23 +115,24 @@ public void addColumns(String[] colName)//Table Columns
 public void addcontent(ResultSet resultado){	
 	 try {
          while(resultado.next()){
-             Object[] fila = new Object[16];//Creamos un Objeto con tantos parámetros como datos retorne cada fila de la consulta
+             Object[] fila = new Object[17];//Creamos un Objeto con tantos parámetros como datos retorne cada fila de la consulta
              fila[0] = resultado.getDouble("ID");
              fila[1] = resultado.getString("NOMBRE"); //Lo que hay entre comillas son los campos de la base de datos
              fila[2] = resultado.getString("APELLIDO1");
              fila[3] = resultado.getString("APELLIDO2");
-             fila[4] = resultado.getString("DIRECCION");             
-             fila[5] = resultado.getString("TELEFONO");
+             fila[4] = resultado.getString("CIFNIF");
+             fila[5] = resultado.getString("DIRECCION");             
              fila[6] = resultado.getString("POBLACION");
              fila[7] = resultado.getString( "CP");
              fila[8] = resultado.getString("SEXO");
-             fila[9] = resultado.getString("MOVIL");
-             fila[10] = resultado.getString("FAX");
-             fila[11] = resultado.getString( "EMAIL");
-             fila[12] = resultado.getString("NCUENTA");
-             fila[13] = resultado.getString("FECHANACIMIENTO");
-             fila[14] = resultado.getString("FECHAINICIO");
-             fila[15] = resultado.getString("COMENTARIOS");
+             fila[9] = resultado.getString("TELEFONO");           
+             fila[10] = resultado.getString("MOVIL");
+             fila[11] = resultado.getString("FAX");
+             fila[12] = resultado.getString( "EMAIL");
+             fila[13] = resultado.getString("NCUENTA");
+             fila[14] = resultado.getString("FECHANACIMIENTO");
+             fila[15] = resultado.getString("FECHAINICIO");
+             fila[16] = resultado.getString("COMENTARIOS");
              tabModel.addRow(fila); // Añade una fila al final del modelo de la tabla
          }
          

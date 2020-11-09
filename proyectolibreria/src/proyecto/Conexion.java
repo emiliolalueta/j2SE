@@ -18,7 +18,7 @@ public class Conexion {
 			}		   		
 			    try {			       
 			     // Establecemos la conexión con la base de datos.	
-			     conexion = DriverManager.getConnection ("jdbc:mysql://localhost/emilio","root", "");	
+			     conexion = DriverManager.getConnection ("jdbc:mysql://178.32.68.44/libreria","root", "thecult-rise");	
 			    // conexion = DriverManager.getConnection ("jdbc:mysql://localhost/libreria","admin", "pass");
 			     sentencia = conexion.createStatement();		        
 			        

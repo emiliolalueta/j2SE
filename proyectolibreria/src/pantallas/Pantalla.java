@@ -31,7 +31,7 @@ public ResultSet resulta;
 	 	setLayout( new BorderLayout() );   
 		rows=new Vector();
 		columns= new Vector();
-		String[] columnNames ={"ID","Nombre","Primer apellido","Segundo apellido","Direccion","Telefono","Comentarios"};
+		String[] columnNames ={"ID","Nombre","Primer apellido","Segundo apellido","Direccion","Telefono","Ocupacion"};
 		addColumns(columnNames);
 		
 		tabModel=new DefaultTableModel();
@@ -96,7 +96,7 @@ public void addcontent(ResultSet resultado){
              fila[3] = resultado.getString("APELLIDO2");
              fila[4] = resultado.getString("DIRECCION");
              fila[5] = resultado.getString("TELEFONO");
-             fila[6] = resultado.getString("COMENTARIOS");
+             fila[6] = resultado.getString("OCUPACION");
              tabModel.addRow(fila); // Añade una fila al final del modelo de la tabla
          }
 

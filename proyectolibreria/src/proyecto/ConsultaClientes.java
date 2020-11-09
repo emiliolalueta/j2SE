@@ -1,16 +1,29 @@
 package proyecto;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.Vector;
-
 public class ConsultaClientes {
+	//ID,NOMBRE,APELLIDO1,APELLIDO2,CIFNIF,DIRECCION,POBLACION,CP,SEXO,TELEFONO,MOVIL,FAX,EMAIL,NCUENTA,FECHANACIMIENTO,FECHAINICIO,COMENTARIOS
+	
+	static String nombre,apellido1,apellido2,cifnif,dir,poblacion,cp,sexo,email,ncuenta,comentarios;	
+	static int id,tfno,movil,fax;
+	static Date fechanacimiento,fechainicio;
+	//static Connection conexion = null;
+	//static Statement sentencia;
 	static ResultSet resultado;			
 	static Clientes cliente;
-
-	public static void insertar(int id,String nombre,String apellido1,String apellido2,String cifnif, String dir, String poblacion,int cp,int sexo, int tfno,int movil,int fax,String  email,String ncuenta,Date fechanacimiento,Date fechainicio,String comentarios){
+	static Vector<Clientes> vector=new Vector<Clientes>();
+	
+	public static void insertar(int id,String nombre,String apellido1,String apellido2,String cifnif, String dir, int tfno,String poblacion,String cp,String sexo,int movil,int fax,String  email,String ncuenta,String fechanacimiento,String fechainicio,String comentarios){
 		try{					
 				Conexion.conectar();
-		        
+		        //sentencia = conexion.createStatement();
 		        Conexion.sentencia.execute( "INSERT INTO CLIENTES "+        
 	        		"VALUES(" +
 	        		"'" + id + "'" + "," +	
@@ -19,10 +32,10 @@ public class ConsultaClientes {
 	        		"'" + apellido2 + "'" + "," +	
 	        		"'" + cifnif + "'" + "," +	
 	        		"'" + dir    + "'" + "," +
+	        		"'" + tfno + "'" + "," +	
 	        		"'" + poblacion + "'" + "," +
-	        		"'" + cp + "'" + "," +	
+	        		"'" + cp + "'" + "," +
 	        		"'" + sexo + "'" + "," +
-	        		"'" + tfno + "'" + "," +
 	        		"'" + movil + "'" + "," +
 	        		"'" + fax + "'" + "," +
 	        		"'" + email + "'" + "," +
@@ -39,6 +52,7 @@ public class ConsultaClientes {
 	public static void borrar(int id){
 		try{					
 				Conexion.conectar();
+		        //sentencia = conexion.createStatement();
 		        Conexion.sentencia.execute( "DELETE FROM CLIENTES WHERE ID=" + "'" + id + "'");		        
 			}
 				catch(Exception e){	
@@ -46,20 +60,21 @@ public class ConsultaClientes {
 			}
 	}
 	
-	public static void modificar(int id,String nombre,String apellido1,String apellido2,
-			String cifnif, String dir, String poblacion,String cp,int sexo,int tfno,int movil,int fax,String  email,String ncuenta,Date fechanacimiento,Date fechainicio,String comentarios){
+	public static void modificar(int i,int id,String nombre,String apellido1,String apellido2,String cifnif, String dir, int tfno,String poblacion,String cp,boolean sexo,int movil,String fax,String  email,String ncuenta,Date fechanacimiento,Date fechainicio,String comentarios){
 		try{					
 				Conexion.conectar();
-		        Conexion.sentencia.execute( "UPDATE CLIENTES SET" +	 " " + 		
+		        //sentencia = conexion.createStatement();
+		        Conexion.sentencia.execute( "UPDATE CLIENTES SET" +	 " " + 	
+		        	"ID" + "="  + "'" + id + "'" + "," +		
 	        		"NOMBRE" + "=" + "'" + nombre + "'" + "," +		
 	        		"APELLIDO1" + "=" + "'" + apellido1 + "'" + "," +	
 	        		"APELLIDO2" + "=" + "'" + apellido2 + "'" + "," +
 	        		"CIFNIF" + "=" + "'" + cifnif + "'" + "," +
-	        		"DIRECCION" + "=" + "'" + dir + "'" + "," +		        		
+	        		"DIRECCION" + "=" + "'" + dir + "'" + "," +
+	        		"TELEFONO" + "=" + "'" + tfno + "'" + "," +		        		
 	        		"POBLACION" + "=" + "'" + poblacion + "'" + "," +	
 	        		"CP"   + "=" + "'" + cp + "'" + "," +	
 	        		"SEXO" + "=" + "'" + sexo + "'" + "," +	
-	        		"TELEFONO" + "=" + "'" + tfno + "'" + "," +
 	        		"MOVIL" + "=" + "'" + movil + "'" + "," +	
 	        		"FAX" + "=" + "'" + fax + "'" + "," +	
 	        		"EMAIL" + "=" + "'" + email + "'" + "," +	
@@ -67,41 +82,51 @@ public class ConsultaClientes {
 	        		"FECHANACIMIENTO" + "=" + "'" + fechanacimiento + "'" + "," +	
 	        		"FECHAINICIO" + "=" + "'" + fechainicio + "'" + "," +	
 	        		"COMENTARIOS" + "=" + "'" + comentarios + "'" + "," +	        		
-	        		"WHERE ID" + "=" + "'" + id + "'" );		        		     
+	        		"WHERE ID" + "=" + "'" + i + "'" );		        		     
 			}
 		catch(Exception e){	
 				System.out.println(e);
 			}
 	}
-
-	public static Vector<Clientes> consulta(){
-		Vector<Clientes> vector=new Vector<Clientes>();
+	public static Vector<Clientes> consultanombre(){
+		//Vector<Clientes> vector;
 		try{			  
-			 Conexion.conectar();
-			  						  						  
-			 resultado=Conexion.sentencia.executeQuery("SELECT * FROM CLIENTES ORDER BY ID");
-			 Clientes cliente=new Clientes();
+			  Conexion.conectar();
+			  //sentencia = conexion.createStatement();						  						  
+			  resultado=Conexion.sentencia.executeQuery("SELECT * FROM CLIENTES WHERE NOMBRE=" + "'" + nombre + "'");
+			   cliente=new Clientes();
+			 // vector=new Vector<Clientes>();
 		   	 while(resultado.next()){	
-		   		  cliente.setId(resultado.getInt("ID"));
-				  cliente.setNombre(resultado.getString("NOMBRE"));		
-				  cliente.setApellido1(resultado.getString("APELLIDO1"));		
-				  cliente.setApellido2(resultado.getString("APELLIDO2"));		
-				  cliente.setCifNif(resultado.getString("CIFNIF"));
-				  cliente.setDireccion(resultado.getString("DIRECCION"));
-				  cliente.setPoblacion(resultado.getString("POBLACION"));
-				  cliente.setCp(resultado.getInt("CP"));
-				  cliente.setSexo(resultado.getInt("SEXO"));
-				  cliente.setTelefono(resultado.getInt("TELEFONO")); 				  		  
-				  cliente.setMovil(resultado.getInt("MOVIL")); 
-				  cliente.setFax(resultado.getInt("FAX")); 
-				  cliente.setEmail(resultado.getString("EMAIL")); 
-				  cliente.setNcuenta(resultado.getString("NCUENTA")); 
-				  cliente.setFechaAlta(resultado.getString("FECHANACIMIENTO")); 
-				  cliente.setFechaNacimiento(resultado.getString("FECHAINICIO"));  
-				  cliente.setComentarios(resultado.getString("COMENTARIOS"));  
+		   		  id=resultado.getInt("ID")	;
+				  nombre=resultado.getString("NOMBRE");		
+				  apellido1=resultado.getString("APELLIDO1");		
+				  apellido2=resultado.getString("APELLIDO2");		
+				  dir=resultado.getString("DIR");
+				  tfno=resultado.getInt("TFNO"); 				  		  
+				  cifnif=resultado.getString("CIFNIF"); 
+				  dir=resultado.getString("DIR"); 				 
+				  poblacion=resultado.getString("POBLACION"); 
+				  cp=resultado.getString("CP"); 
+				  sexo=resultado.getString("SEXO"); 
+				  movil=resultado.getInt("MOVIL"); 
+				  fax=resultado.getInt("FAX"); 
+				  email=resultado.getString("EMAIL"); 
+				  ncuenta=resultado.getString("NCUENTA"); 
+				  fechanacimiento=resultado.getDate("FECHADENACIMIENTO"); 
+				  fechainicio=resultado.getDate("FECHAINICIO");  
+				  comentarios=resultado.getString("COMENTARIOS"); 
 				  
-				  vector.addElement(cliente);		
+				  cliente.setId(id);
+				  cliente.setNombre(nombre);
+				  cliente.setApellido1(apellido1);
+				  cliente.setApellido2(apellido2);
+				  cliente.setDireccion(dir);
+				  cliente.setTelefono(tfno);
 				  
+				  
+				  vector.addElement(cliente);
+				  
+				  vector.lastElement();				 
 			  }
 		   	return vector;
 		}
@@ -111,17 +136,65 @@ public class ConsultaClientes {
 		}								
 	}
 	
+	public static Vector<Clientes> consulta(){		
+		try{			 
+			cliente=new Clientes();
+			  Conexion.conectar();
+			  //sentencia= conexion.createStatement();						  						  
+			  resultado=Conexion.sentencia.executeQuery("SELECT * FROM CLIENTES ORDER BY ID");			  
+			  
+		   	 while(resultado.next()){	
+		   		  id=resultado.getInt("ID")	;
+		   		  nombre=resultado.getString("NOMBRE");		
+				  apellido1=resultado.getString("APELLIDO1");		
+				  apellido2=resultado.getString("APELLIDO2");		
+				  dir=resultado.getString("DIR");
+				  tfno=resultado.getInt("TFNO"); 				  		  
+				  cifnif=resultado.getString("CIFNIF"); 
+				  dir=resultado.getString("DIR"); 				 
+				  poblacion=resultado.getString("POBLACION"); 
+				  cp=resultado.getString("CP"); 
+				  sexo=resultado.getString("SEXO"); 
+				  movil=resultado.getInt("MOVIL"); 
+				  fax=resultado.getInt("FAX"); 
+				  email=resultado.getString("EMAIL"); 
+				  ncuenta=resultado.getString("NCUENTA"); 
+				  fechanacimiento=resultado.getDate("FECHADENACIMIENTO"); 
+				  fechainicio=resultado.getDate("FECHAINICIO");  
+				  comentarios=resultado.getString("COMENTARIOS"); 
+				 		  
+				 
+				  cliente.setId(id);
+				  cliente.setNombre(nombre);
+				  cliente.setApellido1(apellido1);
+				  cliente.setApellido2(apellido2);
+				  cliente.setDireccion(dir);
+				  cliente.setTelefono(tfno);
+				 
+				  vector.addElement(cliente);
+				  
+				  vector.lastElement();				 
+			  }
+		   	return vector;
+		}
+		catch(Exception e){	
+			System.out.println(e);
+			e.printStackTrace();
+			return null;
+		}						
+	}
 	public static ResultSet resultado(){
-		try{				
+		try{		
+			
 			cliente=new Clientes();
 			  Conexion.conectar();			 			  						  
-			  resultado=Conexion.sentencia.executeQuery("SELECT ID, NOMBRE, APELLIDO1, APELLIDO2, DIRECCION, TELEFONO, POBLACION, CP, SEXO, MOVIL, FAX, EMAIL, NCUENTA, FECHANACIMIENTO, FECHAINICIO, COMENTARIOS FROM CLIENTES ORDER BY ID;");		   	
+			  resultado=Conexion.sentencia.executeQuery("SELECT * FROM CLIENTES ORDER BY ID;");		   	
 		   		return resultado;
 		}
 		catch(Exception e){	
 			System.out.println(e);
 			e.printStackTrace();
-
+			//return null;
 		}
 		return resultado;						
 		
