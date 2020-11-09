@@ -21,7 +21,7 @@ public class Principal extends JFrame {
 		//new Principal();
 		new ConsultaClientes();
 		Vector<Clientes> vec = ConsultaClientes.consulta();
-		vec.gasassa
+		vec.gasassaasasa
 		Iterator<Clientes> itr = vec.iterator();
 		for(int i=0;i<vec.size();i++) {	
 			System.out.println();
