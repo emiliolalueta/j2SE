@@ -1,5 +1,6 @@
 package proyecto;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
@@ -7,7 +8,46 @@ public class ConsultaClientes {
 	static ResultSet resultado;			
 	static Clientes cliente;
 
-	public static void insertar(int id,String nombre,String apellido1,String apellido2,String cifnif, String dir, String poblacion,int cp,int sexo, int tfno,int movil,int fax,String  email,String ncuenta,Date fechanacimiento,Date fechainicio,String comentarios){
+	
+	public static void insertar(Clientes cliente) {
+		try {
+
+			SimpleDateFormat formatofechas = new SimpleDateFormat("yyyy-mm-dd");
+			
+			Date fechanaciento=formatofechas.parse(cliente.getFechaNacimiento());
+			Date fechaNacTabla = new java.sql.Date(fechanaciento.getTime());
+			
+			Date fechalta=formatofechas.parse(cliente.getFechaAlta());
+			Date fechaAltTabla = new java.sql.Date(fechalta.getTime());
+
+			Conexion.conectar();
+	        
+	        Conexion.sentencia.execute( "INSERT INTO CLIENTES "+        
+        		"VALUES(" +
+        		"'" + cliente.getId() + "'" + "," +	
+        		"'" + cliente.getNombre() + "'" + "," +		
+        		"'" + cliente.getApellido1() + "'" + "," +	
+        		"'" + cliente.getApellido2() + "'" + "," +	
+        		"'" + cliente.getCifNif() + "'" + "," +	
+        		"'" + cliente.getDireccion() + "'" + "," +
+        		"'" + cliente.getPoblacion() + "'" + "," +
+        		"'" + cliente.getCp() + "'" + "," +	
+        		"'" + cliente.getSexo() + "'" + "," +
+        		"'" + cliente.getTelefono() + "'" + "," +
+        		"'" + cliente.getMovil() + "'" + "," +
+        		"'" + cliente.getFax() + "'" + "," +
+        		"'" + cliente.getEmail() + "'" + "," +
+        		"'" + cliente.getNcuenta() + "'" + "," +
+        		"'" + fechaNacTabla + "'" + "," +
+        		"'" + fechaAltTabla + "'" + "," +
+        		"'" + cliente.getComentarios() + "'" + ")" );			    
+
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	/*public static void insertar(int id,String nombre,String apellido1,String apellido2,String cifnif, String dir, String poblacion,int cp,int sexo, int tfno,int movil,int fax,String  email,String ncuenta,Date fechanacimiento,Date fechainicio,String comentarios){
 		try{					
 				Conexion.conectar();
 		        
@@ -35,7 +75,7 @@ public class ConsultaClientes {
 				System.out.println(e);
 			}
 	}
-	
+	*/
 	public static void borrar(int id){
 		try{					
 				Conexion.conectar();
@@ -45,7 +85,43 @@ public class ConsultaClientes {
 				System.out.println(e);
 			}
 	}
-	
+
+	public static void modificar(Clientes cliente){
+		try{					
+				
+			SimpleDateFormat formatearFecha = new SimpleDateFormat("yyyy-mm-dd");
+			
+			Date fechaNac = formatearFecha.parse(cliente.getFechaAlta());
+			Date fechaAlt = formatearFecha.parse(cliente.getFechaAlta());
+			
+			java.sql.Date fechaNacTab = new java.sql.Date(fechaNac.getTime());
+			java.sql.Date fechaAltTab = new java.sql.Date(fechaAlt.getTime());
+			
+			Conexion.conectar();
+	        Conexion.sentencia.execute( "UPDATE CLIENTES SET" +	 " " + 		
+	        		"NOMBRE" + "=" + "'" + cliente.getNombre() + "'" + "," +		
+	        		"APELLIDO1" + "=" + "'" + cliente.getApellido1() + "'" + "," +	
+	        		"APELLIDO2" + "=" + "'" + cliente.getApellido2() + "'" + "," +
+	        		"CIFNIF" + "=" + "'" + cliente.getCifNif() + "'" + "," +
+	        		"DIRECCION" + "=" + "'" + cliente.getDireccion() + "'" + "," +		        		
+	        		"POBLACION" + "=" + "'" + cliente.getPoblacion() + "'" + "," +	
+	        		"CP"   + "=" + "'" + cliente.getCp() + "'" + "," +	
+	        		"SEXO" + "=" + "'" + cliente.getSexo() + "'" + "," +	
+	        		"TELEFONO" + "=" + "'" + cliente.getTelefono() + "'" + "," +
+	        		"MOVIL" + "=" + "'" + cliente.getMovil() + "'" + "," +	
+	        		"FAX" + "=" + "'" + cliente.getFax() + "'" + "," +	
+	        		"EMAIL" + "=" + "'" + cliente.getEmail() + "'" + "," +	
+	        		"NCUENTA" + "=" + "'" + cliente.getNcuenta() + "'" + "," +	
+	        		"FECHANACIMIENTO" + "=" + "'" + fechaNacTab + "'" + "," +	
+	        		"FECHAINICIO" + "=" + "'" + fechaAltTab + "'" + "," +	
+	        		"COMENTARIOS" + "=" + "'" + cliente.getComentarios() + "'" +	        		
+	        		"WHERE ID" + "=" + "'" + cliente.getId() + "'" );		        		     
+			}
+		catch(Exception e){	
+				System.out.println(e);
+			}
+	}
+	/*
 	public static void modificar(int id,String nombre,String apellido1,String apellido2,
 			String cifnif, String dir, String poblacion,String cp,int sexo,int tfno,int movil,int fax,String  email,String ncuenta,Date fechanacimiento,Date fechainicio,String comentarios){
 		try{					
@@ -73,35 +149,37 @@ public class ConsultaClientes {
 				System.out.println(e);
 			}
 	}
-
+	*/
 	public static Vector<Clientes> consulta(){
-		Vector<Clientes> vector=new Vector<Clientes>();
+		
 		try{			  
 			 Conexion.conectar();
 			  						  						  
 			 resultado=Conexion.sentencia.executeQuery("SELECT * FROM CLIENTES ORDER BY ID");
-			 Clientes cliente=new Clientes();
-		   	 while(resultado.next()){	
-		   		  cliente.setId(resultado.getInt("ID"));
-				  cliente.setNombre(resultado.getString("NOMBRE"));		
-				  cliente.setApellido1(resultado.getString("APELLIDO1"));		
-				  cliente.setApellido2(resultado.getString("APELLIDO2"));		
-				  cliente.setCifNif(resultado.getString("CIFNIF"));
-				  cliente.setDireccion(resultado.getString("DIRECCION"));
-				  cliente.setPoblacion(resultado.getString("POBLACION"));
-				  cliente.setCp(resultado.getInt("CP"));
-				  cliente.setSexo(resultado.getInt("SEXO"));
-				  cliente.setTelefono(resultado.getInt("TELEFONO")); 				  		  
-				  cliente.setMovil(resultado.getInt("MOVIL")); 
-				  cliente.setFax(resultado.getInt("FAX")); 
-				  cliente.setEmail(resultado.getString("EMAIL")); 
-				  cliente.setNcuenta(resultado.getString("NCUENTA")); 
-				  cliente.setFechaAlta(resultado.getString("FECHANACIMIENTO")); 
-				  cliente.setFechaNacimiento(resultado.getString("FECHAINICIO"));  
-				  cliente.setComentarios(resultado.getString("COMENTARIOS"));  
+			 Vector<Clientes> vector=new Vector<Clientes>();
+			 while(resultado.next()){	
+
+				 Clientes cliente=new Clientes();
+				 cliente.setId(resultado.getInt("ID"));
+				 cliente.setNombre(resultado.getString("NOMBRE"));		
+				 cliente.setApellido1(resultado.getString("APELLIDO1"));		
+				 cliente.setApellido2(resultado.getString("APELLIDO2"));		
+				 cliente.setCifNif(resultado.getString("CIFNIF"));
+				 cliente.setDireccion(resultado.getString("DIRECCION"));
+				 cliente.setPoblacion(resultado.getString("POBLACION"));
+				 cliente.setCp(resultado.getInt("CP"));
+				 cliente.setSexo(resultado.getInt("SEXO"));
+				 cliente.setTelefono(resultado.getInt("TELEFONO")); 				  		  
+				 cliente.setMovil(resultado.getInt("MOVIL")); 
+				 cliente.setFax(resultado.getInt("FAX")); 
+				 cliente.setEmail(resultado.getString("EMAIL")); 
+				 cliente.setNcuenta(resultado.getString("NCUENTA")); 
+				 cliente.setFechaAlta(resultado.getString("FECHANACIMIENTO")); 
+				 cliente.setFechaNacimiento(resultado.getString("FECHAINICIO"));  
+				 cliente.setComentarios(resultado.getString("COMENTARIOS"));  
 				  
-				  vector.addElement(cliente);		
-				  
+				 vector.addElement(cliente);	
+				  				  
 			  }
 		   	return vector;
 		}

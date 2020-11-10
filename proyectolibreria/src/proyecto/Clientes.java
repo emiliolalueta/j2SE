@@ -21,6 +21,29 @@ public class Clientes {
 	private String fechaAlta;
 	private String comentarios;
 
+	public Clientes() {
+		
+	}
+	public Clientes(int id, String nombre, String apellido1, String apellido2,String cifnif, String direccion, String poblacion, int cp, int sexo, int telefono, int movil, int fax, String email, String ncuenta, String fechanacimiento, String fechalta, String comentarios) {
+		this.id=id;
+		this.nombre=nombre;
+		this.apellido1=apellido1;
+		this.apellido2=apellido2;
+		this.cifNif=cifnif;
+		this.direccion=direccion;
+		this.poblacion=poblacion;
+		this.cp=cp;
+		this.sexo=sexo;
+		this.telefono=telefono;
+		this.movil=movil;
+		this.fax=fax;
+		this.email=email;
+		this.ncuenta=ncuenta;
+		this.fechaNacimiento=fechanacimiento;
+		this.fechaAlta=fechalta;
+		this.comentarios=comentarios;
+		
+	}
 	public int getId() {
 		return id;
 	}

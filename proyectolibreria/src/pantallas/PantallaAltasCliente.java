@@ -12,12 +12,13 @@ import java.util.*;
 
 import javax.swing.event.*;
 
+import proyecto.Clientes;
 import proyecto.ConsultaClientes;
 public class  PantallaAltasCliente extends JPanel implements ActionListener, TableModelListener{
 public static int c=0;	
 //public static JFrame frame;
 public JTable table;
-public Vector rows,columns;
+
 public DefaultTableModel tabModel;
 public JScrollPane scrollPane;
 public JLabel lblbienvenida,lblId,lblNombre,lblPrimerApellido,lblSegundoApellido,lblDireccion,lblTelefono,lblCifnif,lblPoblacion,lblCp,lblSexo,lblMovil,lblFax,lblEmail,lblNcuenta,lblFechanacimiento,lblFechainicio,lblComentarios;
@@ -26,18 +27,66 @@ public JButton cmdAdd,cmdDelete,cmdSetValue,cmdExit,cmdChange;
 public JPanel mainPanel;
 public ResultSet resulta;
 
- public PantallaAltasCliente(){	 
+private Vector columns;
+private Vector rows;
+public PantallaAltasCliente(){	 
 	   
 	 	setLayout( new BorderLayout() );   
-		rows=new Vector();
-		columns= new Vector();
-		String[] columnNames ={"ID","Nombre","Primer apellido","Segundo apellido","Direccion","Telefono","Poblacion","CP","SEXO","Movil","Fax","Email","Ncuenta","Fecha nacimiento","Fecha alta","Comentarios"};
-		addColumns(columnNames);
+	 	columns= new Vector();
+	 	rows= new Vector();
+		String[] columnNames ={"ID",
+				"Nombre",
+				"Primer apellido",
+				"Segundo apellido",
+				"Cif/Nif",
+				"Direccion",
+				"Poblacion",
+				"CP",
+				"SEXO",
+				"Telefono",
+				"Movil",
+				"Fax",
+				"Email",
+				"Ncuenta",
+				"Fecha nacimiento",
+				"Fecha alta",
+				"Comentarios"};
+		
+		addColumns(columnNames);	
+		
+		Vector<Clientes> filas= ConsultaClientes.consulta();
 		
 		tabModel=new DefaultTableModel();
 		tabModel.setDataVector(rows,columns);
+		
+		for (Clientes cliente : filas) 
+		{		
+            Object[] fila = new Object[17];//Creamos un Objeto con tantos parámetros como datos retorne cada fila de la consulta
+            fila[0] = cliente.getId();
+            fila[1] = cliente.getNombre(); //Lo que hay entre comillas son los campos de la base de datos
+            fila[2] = cliente.getApellido1();
+            fila[3] = cliente.getApellido2();
+            fila[4] = cliente.getCifNif();
+            fila[5] = cliente.getDireccion();
+            fila[6] = cliente.getPoblacion();
+            fila[7] = cliente.getCp();
+            fila[8] = cliente.getSexo();           
+            fila[9] = cliente.getTelefono();
+            fila[10] = cliente.getMovil();
+            fila[11] = cliente.getFax();
+            fila[12] = cliente.getEmail();
+            fila[13] = cliente.getNcuenta();
+            fila[14] = cliente.getFechaNacimiento();
+            fila[15] = cliente.getFechaAlta();
+            fila[16] = cliente.getComentarios();
+            tabModel.addRow(fila); // Añade una fila al final del modelo de la tabla			
+		}
+		/*table.updateUI();//Actualiza la tabla
+		/*
 		resulta=ConsultaClientes.resultado();
 		addcontent(resulta);
+		*/
+		
 		//scrollPane.setViewportView(table);//Esto añade la tabla al portView del scrollPane, si estaba puesto anteriormente
         //hay que borrarlo del otro sitio, sino puede dar error de NullPointerException
 				
@@ -70,12 +119,12 @@ lblCifnif=new JLabel("Nif:");	                    lblCifnif.setBounds(1050, 450,
 txtCifnif=new JTextField(5);				        txtCifnif.setBounds(1100, 450, 120, 25);            mainPanel.add(txtCifnif);
 lblDireccion=new JLabel("Direccion:");				lblDireccion.setBounds(60, 500, 120, 30);			mainPanel.add(lblDireccion);
 txtDireccion=new JTextField(5);						txtDireccion.setBounds(160, 500, 120, 25);			mainPanel.add(txtDireccion);
-lblTelefono=new JLabel("Telefono:");				lblTelefono.setBounds(300, 500, 120, 30);			mainPanel.add(lblTelefono);
-txtTelefono=new JTextField(5);						txtTelefono.setBounds(410, 500, 120, 25);			mainPanel.add(txtTelefono);
 lblPoblacion=new JLabel("Poblacion:");				lblPoblacion.setBounds(550, 500, 120, 30);			mainPanel.add(lblPoblacion);
 txtPoblacion=new JTextField(5);						txtPoblacion.setBounds(650,500, 120, 25);			mainPanel.add(txtPoblacion);
 lblCp=new JLabel("Cp:");							lblCp.setBounds(800, 500, 120, 30);					mainPanel.add(lblCp);
 txtCp=new JTextField(5);							txtCp.setBounds(900, 500, 120, 25);					mainPanel.add(txtCp);
+lblTelefono=new JLabel("Telefono:");				lblTelefono.setBounds(300, 500, 120, 30);			mainPanel.add(lblTelefono);
+txtTelefono=new JTextField(5);						txtTelefono.setBounds(410, 500, 120, 25);			mainPanel.add(txtTelefono);
 lblSexo=new JLabel("Sexo:");						lblSexo.setBounds(1050, 500, 120, 30);				mainPanel.add(lblSexo);
 txtSexo=new JTextField(5);							txtSexo.setBounds(1100, 500, 120, 25);				mainPanel.add(txtSexo);
 lblMovil=new JLabel("Movil:");						lblMovil.setBounds(60, 550, 120, 30);				mainPanel.add(lblMovil);
@@ -106,12 +155,13 @@ table.getParent().setBackground(Color.lightGray);
 //frame.getContentPane().add(mainPanel);
 //frame.setVisible(true);
 }
-public void addColumns(String[] colName)//Table Columns
+
+ public void addColumns(String[] colName)//Table Columns
  	{
 	 		for(int i=0;i<colName.length;i++)
 	 			columns.addElement((String) colName[i]);
  	}
- 
+
 public void addcontent(ResultSet resultado){	
 	 try {
          while(resultado.next()){
@@ -210,7 +260,45 @@ public void actionPerformed(ActionEvent source)
         	 }
          }
          if (source.getSource()==(JButton) cmdSetValue){
-        	 
+        	
+        	 Clientes altaCliente = new Clientes(
+        			 Integer.parseInt(txtId.getText()), 
+        			 txtNombre.getText(), 
+        			 txtPrimerApellido.getText(), 
+        			 txtSegundoApellido.getText(), 
+        			 txtCifnif.getText(), 
+        			 txtDireccion.getText(), 
+        			 txtPoblacion.getText(), 
+        			 Integer.parseInt(txtCp.getText()), 
+        			 Integer.parseInt(txtSexo.getText()), 
+        			 Integer.parseInt(txtTelefono.getText()), 
+        			 Integer.parseInt(txtMovil.getText()),
+        			 Integer.parseInt(txtFax.getText()), 
+        			 txtEmail.getText(), 
+        			 txtNcuenta.getText(), 
+        			 txtFechanacimiento.getText(),
+        			 txtFechainicio.getText(),
+        			 txtComentarios.getText());
+        	 /*
+        	 Clientes altaCliente = new Clientes();
+        	 altaCliente.setId(Integer.parseInt(txtId.getText()));
+        	 altaCliente.setNombre(txtNombre.getText());
+             altaCliente.setApellido1(txtPrimerApellido.getText()); 
+        	 altaCliente.setApellido2(txtSegundoApellido.getText());
+        	 altaCliente.setCifNif(txtCifnif.getText()); 
+        	 altaCliente.setDireccion(txtDireccion.getText());
+        	 altaCliente.setPoblacion(txtPoblacion.getText()); 
+        	 altaCliente.setCp(Integer.parseInt(txtCp.getText()));
+        	 altaCliente.setSexo(Integer.parseInt(txtSexo.getText())); 
+        	 altaCliente.setTelefono(Integer.parseInt(txtTelefono.getText())); 
+        	 altaCliente.setMovil(Integer.parseInt(txtMovil.getText())); 
+        	 altaCliente.setFax(Integer.parseInt(txtFax.getText())); 
+        	 altaCliente.setEmail(txtEmail.getText());		  
+        	 altaCliente.setNcuenta(txtNcuenta.getText()); 
+        	 altaCliente.setFechaNacimiento(txtFechanacimiento.getText()); 
+			 altaCliente.setFechaAlta(txtFechainicio.getText()); 
+			 altaCliente.setComentarios(txtComentarios.getText());
+        	 */
         	 String id=txtId.getText();String nombre=txtNombre.getText();String PrimerApellido=txtPrimerApellido.getText();
         	 String SegundoApellido=txtSegundoApellido.getText();String Cifnif=txtCifnif.getText();String Direccion=txtDireccion.getText();
         	 int Telefono=Integer.parseInt(txtTelefono.getText()); String Poblacion=txtPoblacion.getText();int Cp=Integer.parseInt(txtCp.getText());
@@ -243,7 +331,7 @@ public void actionPerformed(ActionEvent source)
              	  txtSexo.setText("");txtMovil.setText("");txtFax.setText("");
              	  txtEmail.getText();txtNcuenta.getText(); txtFechanacimiento.setText("");
              	  txtFechainicio.setText("");txtComentarios.setText("");      
-                  ConsultaClientes.insertar(Integer.parseInt(id), nombre, PrimerApellido, SegundoApellido, Cifnif, Direccion,Poblacion,Cp,Telefono, Sexo,Movil,Fax,Email,Ncuenta,Fechanacimiento,Fechainicio,Comentarios);             
+                  ConsultaClientes.insertar(altaCliente);             
                  }
          }
          if(source.getSource()==(JButton)cmdChange){

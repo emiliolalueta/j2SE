@@ -6,29 +6,64 @@ import pantallas.Pantalla;
 import pantallas.PantallaAltasCliente;
 import pantallas.PantallaBajasCliente;
 import pantallas.PantallaConsultasCliente;
-
-
-
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
 import java.awt.*;
 
-public class Principal extends JFrame {
+public class Principal extends JFrame 
+{
 
 	public static void main(String[] args) 
 	{
-		//new Principal();
-		new ConsultaClientes();
+		new Principal();
+		
+		//**************************************************************
+		//*Pruebas clase ConsultaClientes
+		//**************************************************************			
+		//new ConsultaClientes();
+		
+		//**************************************************************
+		//*Prueba de consulta de clientes
+		//**************************************************************		
+		/*
 		Vector<Clientes> vec = ConsultaClientes.consulta();
-		vec.mike
-		Iterator<Clientes> itr = vec.iterator();
-		for(int i=0;i<vec.size();i++) {	
-			System.out.println();
+		
+		for (Clientes cliente : vec) 
+		{
+			System.out.println(cliente.getNombre());
 		}
-			
-			
-
+		*/
+		//**************************************************************
+		//*Prueba de insertar clientes
+		//**************************************************************		
+		/*
+		ArrayList<Clientes> clientes = new ArrayList<Clientes>();
+		
+		clientes.add(new Clientes(99, "Pepe", "alucine", "mucho", "9000000", "en la calle", "cualquier sitio", 19200, 0, 918889992, 620873355, 620873355, "unemail", "es su cuenta", "2010-01-01", "2015-01-01", "esto es un comentario"));
+		
+		Iterator<Clientes> itr = clientes.iterator();
+		
+		while(itr.hasNext()) {
+			Clientes cliente = (Clientes) itr.next();
+			ConsultaClientes.insertar(cliente);
+		}
+		*/
+		//**************************************************************
+		//*Prueba de modificar clientes
+		//**************************************************************		
+		/*
+		ArrayList<Clientes> clientes = new ArrayList<Clientes>();
+		
+		clientes.add(new Clientes(99, "Jose", "alucine", "mucho", "9000000", "en la calle", "cualquier sitio", 19200, 0, 918889992, 620873355, 620873355, "unemail", "es su cuenta", "2010-01-02", "2015-01-02", "esto es un comentario"));
+		
+		Iterator<Clientes> itr = clientes.iterator();
+		
+		while(itr.hasNext()) {
+			Clientes cliente = (Clientes) itr.next();
+			ConsultaClientes.modificar(cliente);
+		}
+		*/		
 }
 
 	public Principal() 
