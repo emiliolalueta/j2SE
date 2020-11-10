@@ -14,6 +14,7 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 
 	public JPanel mainPanel;
 	
+	
 	public JTable table;
 	public DefaultTableModel tabModel;
 	
