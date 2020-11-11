@@ -42,8 +42,8 @@ public class ConsultaClientes {
         		"'" + cliente.getFax() + "'" + "," +
         		"'" + cliente.getEmail() + "'" + "," +
         		"'" + cliente.getNcuenta() + "'" + "," +
-        		"'" + fechaNacTabla + "'" + "," +
-        		"'" + fechaAltTabla + "'" + "," +
+        		"'" + cliente.getFechaNacimiento() + "'" + "," +
+        		"'" + cliente.getFechaAlta() + "'" + "," +
         		"'" + cliente.getComentarios() + "'" + ")" );			    
 
 			

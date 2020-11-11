@@ -12,7 +12,8 @@ import javax.swing.event.*;
 import proyecto.Clientes;
 import proyecto.ConsultaClientes;
 
-public class  PantallaAltasCliente extends JPanel implements ActionListener, TableModelListener {
+public class  PantallaAltasCliente extends JPanel implements ActionListener{
+//public class  PantallaAltasCliente extends JPanel implements ActionListener, TableModelListener {
 
 	public JPanel mainPanel;
 	
@@ -54,7 +55,7 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 			scrollPane.setSize(1250, 200);
 			
 			table.setRowSelectionAllowed(true);
-			table.getModel().addTableModelListener(this);
+			//table.getModel().addTableModelListener(this);
 			table.setSize(1250, 400);
 			
 			
@@ -111,6 +112,10 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 	mainPanel.setBackground(Color.white);
 	
 	table.getParent().setBackground(Color.lightGray);
+	
+	cmdChange.setEnabled(false);
+	cmdDelete.setEnabled(false);
+
 
 	table.addMouseListener(new MouseAdapter() 
 	{
@@ -173,7 +178,7 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
  	//******************************************************
  	//* MIKE NO SE PARA QUE SIRVE
  	//******************************************************
-
+/*
 public void tableChanged(javax.swing.event.TableModelEvent source)     {
         String msg="";
         TableModel tabMod = (TableModel)source.getSource();
@@ -187,7 +192,7 @@ public void tableChanged(javax.swing.event.TableModelEvent source)     {
   }
 
 }//Table Changed Method
-
+*/
 public void actionPerformed(ActionEvent source)
     {	
       
