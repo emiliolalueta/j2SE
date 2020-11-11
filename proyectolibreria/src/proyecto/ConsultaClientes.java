@@ -1,8 +1,12 @@
 package proyecto;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
 
 public class ConsultaClientes {
 	static ResultSet resultado;			
@@ -203,5 +207,77 @@ public class ConsultaClientes {
 		}
 		return resultado;						
 		
+	}
+	public static DefaultTableModel buildTableModel()
+	           throws SQLException {
+
+		try
+		{			  
+			 Conexion.conectar();
+			  						  						  
+			 resultado=Conexion.sentencia.executeQuery("SELECT * FROM CLIENTES ORDER BY ID");		 
+
+		     Vector<String> columnNames = new Vector<String>();
+		     /*
+		     ResultSetMetaData metaData = resultado.getMetaData();
+		     // names of columns si sacamos el nombre del campo de la tabla
+		     
+		     int columnCount = metaData.getColumnCount();
+		     for (int column = 1; column <= columnCount; column++) {
+		         columnNames.add(metaData.getColumnName(column));
+		     }
+		     */
+		     //names of columns dado a mano
+		     
+		     String[] aManocolumnNames ={
+					"ID",
+					"Nombre",
+					"Primer apellido",
+					"Segundo apellido",
+					"Cif/Nif",
+					"Direccion",
+					"Poblacion",
+					"CP",
+					"SEXO",
+					"Telefono",
+					"Movil",
+					"Fax",
+					"Email",
+					"Ncuenta",
+					"Fecha nacimiento",
+					"Fecha alta",
+					"Comentarios"};
+		     
+		     int columnCount = aManocolumnNames.length;
+	 		 for(int i=0;i<aManocolumnNames.length;i++) {
+	 			columnNames.addElement((String) aManocolumnNames[i]);
+
+		     }
+			
+		     // data of the table
+		     Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		     while (resultado.next()) 
+		     {
+		         Vector<Object> vector = new Vector<Object>();
+		         for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) 
+		         {
+		             vector.add(resultado.getObject(columnIndex));
+		     	
+		         }
+		         data.add(vector);
+		     }
+		     return new DefaultTableModel(data, columnNames) {
+		    	 @Override
+		         public boolean isCellEditable(int row, int column) {
+		            //all cells false
+		            return false;
+		         }
+		     };
+	    }
+		catch(Exception e){	
+			System.out.println(e);
+			return null;
+		}	
+	    
 	}
 }

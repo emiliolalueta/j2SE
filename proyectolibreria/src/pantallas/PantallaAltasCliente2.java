@@ -12,7 +12,7 @@ import javax.swing.event.*;
 import proyecto.Clientes;
 import proyecto.ConsultaClientes;
 
-public class  PantallaAltasCliente extends JPanel implements ActionListener, TableModelListener {
+public class  PantallaAltasCliente2 extends JPanel implements ActionListener, TableModelListener {
 
 	public JPanel mainPanel;
 	
@@ -31,7 +31,7 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 	private Vector columns;
 	private Vector rows;
 	
-	public PantallaAltasCliente() throws SQLException {	 
+	public PantallaAltasCliente2() throws SQLException {	 
 		   
 		 	setLayout( new BorderLayout() );   
 		 	
@@ -57,7 +57,6 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 			table.setRowSelectionAllowed(true);
 			table.getModel().addTableModelListener(this);
 			table.setSize(1250, 400);
-			
 			
 			lblbienvenida=new JLabel("ALTA CLIENTES");lblbienvenida.setBounds(600, 10, 100, 30);mainPanel.add(lblbienvenida);
 	
@@ -113,63 +112,14 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 	
 	table.getParent().setBackground(Color.lightGray);
 
-	table.addMouseListener(new MouseAdapter() 
-	{
-		public void mousePressed(MouseEvent mouse_evt) {
-			JTable table = (JTable) mouse_evt.getSource();
-			Point point = mouse_evt.getPoint();
-			int fila = table.rowAtPoint(point);
-			if(mouse_evt.getClickCount()==1) {
-				txtId.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-				txtNombre.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-				txtPrimerApellido.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
-				txtSegundoApellido.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
-				txtCifnif.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
-				txtDireccion.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
-				txtPoblacion.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
-				txtCp.setText(table.getValueAt(table.getSelectedRow(), 7).toString());
-				txtSexo.setText(table.getValueAt(table.getSelectedRow(), 8).toString());
-				txtTelefono.setText(table.getValueAt(table.getSelectedRow(), 9).toString());
-				txtMovil.setText(table.getValueAt(table.getSelectedRow(), 10).toString());
-				txtFax.setText(table.getValueAt(table.getSelectedRow(), 11).toString());
-				txtEmail.setText(table.getValueAt(table.getSelectedRow(), 12).toString());
-				txtNcuenta.setText(table.getValueAt(table.getSelectedRow(), 13).toString());
-				txtFechanacimiento.setText(table.getValueAt(table.getSelectedRow(), 14).toString());
-				txtFechainicio.setText(table.getValueAt(table.getSelectedRow(), 15).toString());
-				txtComentarios.setText(table.getValueAt(table.getSelectedRow(), 16).toString());
-				
-				txtId.setEnabled(false);
-				cmdSetValue.setEnabled(false);
-				cmdDelete.setEnabled(true);
-				cmdChange.setEnabled(true);
-			}
-			if(mouse_evt.getClickCount()==2) {
-				txtId.setText("");
-				txtNombre.setText("");
-				txtPrimerApellido.setText("");
-				txtSegundoApellido.setText("");
-				txtCifnif.setText("");
-				txtDireccion.setText("");
-				txtPoblacion.setText("");
-				txtCp.setText("");
-				txtSexo.setText("");
-				txtTelefono.setText("");
-				txtMovil.setText("");
-				txtFax.setText("");
-				txtEmail.setText("");
-				txtNcuenta.setText("");
-				txtFechanacimiento.setText("");
-				txtFechainicio.setText("");
-				txtComentarios.setText("");
-				
-				txtId.setEnabled(true);
-				cmdSetValue.setEnabled(true);
-				cmdDelete.setEnabled(false);
-				cmdChange.setEnabled(false);
-			}
-		}
-		});
 	}
+
+
+public void addColumns(String[] colName)//Table Columns
+{
+ 		for(int i=0;i<colName.length;i++)
+ 			columns.addElement((String) colName[i]);
+}
 
 public void addRow() //Add Row
 {
@@ -230,21 +180,12 @@ public void actionPerformed(ActionEvent source)
          if (source.getSource()==(JButton) cmdDelete)
          {               
              // capturo el primer dato de la celda seleccionada
-        	     int i=Integer.parseInt(txtId.getText());            
-	             System.out.println(table.getSelectedRow());
+        	 if(table.getSelectedRow()>=0){   
+	             String dato=String.valueOf(tabModel.getValueAt(table.getSelectedRow(),0));             
+	             int i=Math.round(Float.parseFloat(dato));            
 	             ConsultaClientes.borrar(i);
-	             try {
-					DefaultTableModel tabModel=ConsultaClientes.buildTableModel();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	             /*
 	             deleteRow(table.getSelectedRow()); 
-	             table.setModel(tabModel);
-	             tabModel.fireTableDataChanged();
-	             */
-
+        	 }
          }
          if (source.getSource()==(JButton) cmdSetValue){
         	
@@ -362,7 +303,7 @@ public void actionPerformed(ActionEvent source)
          	}    
     }
 public static void main(String[] args) throws SQLException {
-	PantallaAltasCliente pan=new PantallaAltasCliente();
+	PantallaAltasCliente2 pan=new PantallaAltasCliente2();
 }
 
 }

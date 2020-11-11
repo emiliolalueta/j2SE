@@ -7,6 +7,7 @@ import pantallas.PantallaAltasCliente;
 import pantallas.PantallaBajasCliente;
 import pantallas.PantallaConsultasCliente;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.*;
@@ -14,7 +15,7 @@ import java.awt.*;
 public class Principal extends JFrame 
 {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws SQLException 
 	{
 		new Principal();
 		
@@ -66,7 +67,7 @@ public class Principal extends JFrame
 		*/		
 }
 
-	public Principal() 
+	public Principal() throws SQLException 
 	{ 
 		//set the Frame size
 		this.setSize(1350, 750);
