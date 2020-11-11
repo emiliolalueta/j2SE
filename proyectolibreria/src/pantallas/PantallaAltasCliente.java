@@ -27,16 +27,15 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 	
 	public JButton cmdAdd,cmdDelete,cmdSetValue,cmdExit,cmdChange;
 	
-	
-	private Vector columns;
-	private Vector rows;
-	
 	public PantallaAltasCliente() throws SQLException {	 
 		   
 		 	setLayout( new BorderLayout() );   
 		 	
 		 	DefaultTableModel tabModel=ConsultaClientes.buildTableModel();
 			
+		 	//******************************************************
+		 	//* MIKE NO SE PARA QUE SIRVE
+		 	//******************************************************
 		 	//*table.updateUI();//Actualiza la tabla
 			
 			//scrollPane.setViewportView(table);//Esto añade la tabla al portView del scrollPane, si estaba puesto anteriormente
@@ -171,80 +170,49 @@ public class  PantallaAltasCliente extends JPanel implements ActionListener, Tab
 		});
 	}
 
-public void addRow() //Add Row
-{
-	Vector r=new Vector();
-	r=createBlankElement();
-	rows.addElement(r);
-	table.addNotify();
-}
-
-public Vector createBlankElement() 
-{
-Vector t = new Vector();
-t.addElement((String) " ");
-t.addElement((String) " ");
-t.addElement((String) " ");
-t.addElement((String) " ");
-t.addElement((String) " ");
-t.addElement((String) " ");
-t.addElement((String) " ");
-return t;
-}
-
-void deleteRow(int index) 
-   {
-     if(index!=-1)//At least one Row in Table
-      { 
-        rows.removeElementAt(index);
-        table.addNotify();
-       }
-
-   }//Delete Row
+ 	//******************************************************
+ 	//* MIKE NO SE PARA QUE SIRVE
+ 	//******************************************************
 
 public void tableChanged(javax.swing.event.TableModelEvent source)     {
-                 String msg="";
-                 TableModel tabMod = (TableModel)source.getSource();
-          switch (source.getType())
-           {
-              case TableModelEvent.UPDATE:
-              //msg="Table Value Updated for  cell "+table.getSelectedRow()+","+table.getSelectedColumn()+"\nWhich is "+table.getValueAt(table.getSelectedRow(),table.getSelectedColumn()).toString();
-              //JOptionPane.showMessageDialog(null,msg,"Table Example",JOptionPane.INFORMATION_MESSAGE);
-              break;
+        String msg="";
+        TableModel tabMod = (TableModel)source.getSource();
+ switch (source.getType())
+  {
+     case TableModelEvent.UPDATE:
+     //msg="Table Value Updated for  cell "+table.getSelectedRow()+","+table.getSelectedColumn()+"\nWhich is "+table.getValueAt(table.getSelectedRow(),table.getSelectedColumn()).toString();
+     //JOptionPane.showMessageDialog(null,msg,"Table Example",JOptionPane.INFORMATION_MESSAGE);
+     break;
 
-           }
+  }
 
-    }//Table Changed Method
+}//Table Changed Method
 
-public void selectCell(int row,int col)
-    {
-         if(row!=-1 && col !=-1)            
-          {
-          table.setRowSelectionInterval(row,row);
-          table.setColumnSelectionInterval(col,col);
-          }
-    }
 public void actionPerformed(ActionEvent source)
     {	
       
          if (source.getSource()==(JButton) cmdDelete)
          {               
              // capturo el primer dato de la celda seleccionada
+        	 if(!txtId.getText().isEmpty()) {
+        		         	 
         	     int i=Integer.parseInt(txtId.getText());            
-	             System.out.println(table.getSelectedRow());
 	             ConsultaClientes.borrar(i);
 	             try {
 					DefaultTableModel tabModel=ConsultaClientes.buildTableModel();
+					table.setModel(tabModel);
+					tabModel.fireTableDataChanged();
+					dejartextosenblanco();
+					cmdChange.setEnabled(false);
+		        	cmdDelete.setEnabled(false);
+		        	cmdSetValue.setEnabled(true);
+		        	txtId.setEnabled(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	             /*
-	             deleteRow(table.getSelectedRow()); 
-	             table.setModel(tabModel);
-	             tabModel.fireTableDataChanged();
-	             */
 
+        	 }
          }
          if (source.getSource()==(JButton) cmdSetValue){
         	
@@ -257,7 +225,7 @@ public void actionPerformed(ActionEvent source)
         			 txtDireccion.getText(), 
         			 txtPoblacion.getText(), 
         			 Integer.parseInt(txtCp.getText()), 
-        			 Integer.parseInt(txtSexo.getText()), 
+        			 Boolean.getBoolean(txtSexo.getText()), 
         			 Integer.parseInt(txtTelefono.getText()), 
         			 Integer.parseInt(txtMovil.getText()),
         			 Integer.parseInt(txtFax.getText()), 
@@ -266,103 +234,84 @@ public void actionPerformed(ActionEvent source)
         			 txtFechanacimiento.getText(),
         			 txtFechainicio.getText(),
         			 txtComentarios.getText());
-        	 /*
-        	 Clientes altaCliente = new Clientes();
-        	 altaCliente.setId(Integer.parseInt(txtId.getText()));
-        	 altaCliente.setNombre(txtNombre.getText());
-             altaCliente.setApellido1(txtPrimerApellido.getText()); 
-        	 altaCliente.setApellido2(txtSegundoApellido.getText());
-        	 altaCliente.setCifNif(txtCifnif.getText()); 
-        	 altaCliente.setDireccion(txtDireccion.getText());
-        	 altaCliente.setPoblacion(txtPoblacion.getText()); 
-        	 altaCliente.setCp(Integer.parseInt(txtCp.getText()));
-        	 altaCliente.setSexo(Integer.parseInt(txtSexo.getText())); 
-        	 altaCliente.setTelefono(Integer.parseInt(txtTelefono.getText())); 
-        	 altaCliente.setMovil(Integer.parseInt(txtMovil.getText())); 
-        	 altaCliente.setFax(Integer.parseInt(txtFax.getText())); 
-        	 altaCliente.setEmail(txtEmail.getText());		  
-        	 altaCliente.setNcuenta(txtNcuenta.getText()); 
-        	 altaCliente.setFechaNacimiento(txtFechanacimiento.getText()); 
-			 altaCliente.setFechaAlta(txtFechainicio.getText()); 
-			 altaCliente.setComentarios(txtComentarios.getText());
-        	 */
-        	 String id=txtId.getText();String nombre=txtNombre.getText();String PrimerApellido=txtPrimerApellido.getText();
-        	 String SegundoApellido=txtSegundoApellido.getText();String Cifnif=txtCifnif.getText();String Direccion=txtDireccion.getText();
-        	 int Telefono=Integer.parseInt(txtTelefono.getText()); String Poblacion=txtPoblacion.getText();int Cp=Integer.parseInt(txtCp.getText());
-        	 String Sexo=txtSexo.getText();int Movil=Integer.parseInt(txtMovil.getText());int Fax=Integer.parseInt(txtFax.getText());
-        	 String Email=txtEmail.getText();String Ncuenta=txtNcuenta.getText(); String Fechanacimiento=txtFechanacimiento.getText();
-        	 String Fechainicio=txtFechainicio.getText();String Comentarios=txtComentarios.getText();        	 
-              if(!nombre.trim().equals("") && !id.trim().equals("") ){
-            	  addRow();
-            	  selectCell(table.getRowCount()-1,0);	table.setValueAt(txtId.getText(),table.getRowCount()-1,0);
-                  selectCell(table.getRowCount()-1,1);	table.setValueAt(txtNombre.getText(),table.getRowCount()-1,1);
-                  selectCell(table.getRowCount()-1,2);	table.setValueAt(txtPrimerApellido.getText(),table.getRowCount()-1,2);
-                  selectCell(table.getRowCount()-1,3);	table.setValueAt(txtSegundoApellido.getText(),table.getRowCount()-1,3);
-                  selectCell(table.getRowCount()-1,4);	table.setValueAt(txtDireccion.getText(),table.getRowCount()-1,4);
-                  selectCell(table.getRowCount()-1,5);	table.setValueAt(txtTelefono.getText(),table.getRowCount()-1,5);                  
-                  selectCell(table.getRowCount()-1,6);	table.setValueAt(txtCifnif.getText(),table.getRowCount()-1,6);                  
-                  selectCell(table.getRowCount()-1,7);	table.setValueAt(txtPoblacion.getText(),table.getRowCount()-1,7);                  
-                  selectCell(table.getRowCount()-1,8);	table.setValueAt(txtCp.getText(),table.getRowCount()-1,8);                  
-                  selectCell(table.getRowCount()-1,9);	table.setValueAt(txtSexo.getText(),table.getRowCount()-1,9);                  
-                  selectCell(table.getRowCount()-1,10);	table.setValueAt(txtMovil.getText(),table.getRowCount()-1,10);                  
-                  selectCell(table.getRowCount()-1,11);	table.setValueAt(txtFax.getText(),table.getRowCount()-1,11);                  
-                  selectCell(table.getRowCount()-1,12);	table.setValueAt(txtEmail.getText(),table.getRowCount()-1,12);                  
-                  selectCell(table.getRowCount()-1,13);	table.setValueAt(txtNcuenta.getText(),table.getRowCount()-1,13);                  
-                  selectCell(table.getRowCount()-1,14);	table.setValueAt(txtFechanacimiento.getText(),table.getRowCount()-1,14);                  
-                  selectCell(table.getRowCount()-1,15);	table.setValueAt(txtFechainicio.getText(),table.getRowCount()-1,15);
-                  selectCell(table.getRowCount()-1,16);	table.setValueAt(txtComentarios.getText(),table.getRowCount()-1,16);
-                  
-                  txtId.setText(""); txtNombre.setText("");		txtPrimerApellido.setText("");	txtSegundoApellido.setText("");
-                  txtDireccion.setText("");	txtTelefono.setText("");txtCifnif.setText("");           	 
-             	  txtPoblacion.setText("");txtCp.setText("");
-             	  txtSexo.setText("");txtMovil.setText("");txtFax.setText("");
-             	  txtEmail.getText();txtNcuenta.getText(); txtFechanacimiento.setText("");
-             	  txtFechainicio.setText("");txtComentarios.setText("");      
-                  ConsultaClientes.insertar(altaCliente);             
-                 }
+	 		 ConsultaClientes.insertar(altaCliente);
+             try {
+				DefaultTableModel tabModel=ConsultaClientes.buildTableModel();
+				table.setModel(tabModel);
+				tabModel.fireTableDataChanged();
+				dejartextosenblanco();
+	        	cmdChange.setEnabled(false);
+	        	cmdDelete.setEnabled(false);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
          }
          if(source.getSource()==(JButton)cmdChange){
-           	 String id=txtId.getText();String nombre=txtNombre.getText();String PrimerApellido=txtPrimerApellido.getText();
-        	 String SegundoApellido=txtSegundoApellido.getText();String Direccion=txtDireccion.getText();
-        	 String Telefono=txtTelefono.getText();
-        	 	if(table.getSelectedRow()>=0){            	 
-                    // capturo el primer dato de la celda seleccionada
-        	 		  String dato=String.valueOf(tabModel.getValueAt(table.getSelectedRow(),0));        	 		              	  
-        	 		  int i=Math.round(Float.parseFloat(dato));   
-	            	  selectCell(table.getSelectedRow(),0);	table.setValueAt(txtId.getText(),table.getSelectedRow(),0);
-	                  selectCell(table.getSelectedRow(),1);	table.setValueAt(txtNombre.getText(),table.getSelectedRow(),1);
-	                  selectCell(table.getSelectedRow(),2);	table.setValueAt(txtPrimerApellido.getText(),table.getSelectedRow(),2);
-	                  selectCell(table.getSelectedRow(),3);	table.setValueAt(txtSegundoApellido.getText(),table.getSelectedRow(),3);
-	                  selectCell(table.getSelectedRow(),4);	table.setValueAt(txtDireccion.getText(),table.getSelectedRow(),4);
-	                  selectCell(table.getSelectedRow(),5);	table.setValueAt(txtTelefono.getText(),table.getSelectedRow(),5);
-	                  selectCell(table.getSelectedRow(),6);	table.setValueAt(txtCifnif.getText(),table.getSelectedRow(),6);
-	                  selectCell(table.getSelectedRow(),7);	table.setValueAt(txtPoblacion.getText(),table.getSelectedRow(),7);
-	                  selectCell(table.getSelectedRow(),8);	table.setValueAt(txtCp.getText(),table.getSelectedRow(),8);
-	                  selectCell(table.getSelectedRow(),9);	table.setValueAt(txtSexo.getText(),table.getSelectedRow(),9);
-	                  selectCell(table.getSelectedRow(),10);table.setValueAt(txtMovil.getText(),table.getSelectedRow(),10);
-	                  selectCell(table.getSelectedRow(),11);table.setValueAt(txtFax.getText(),table.getSelectedRow(),11);
-	                  selectCell(table.getSelectedRow(),12);table.setValueAt(txtEmail.getText(),table.getSelectedRow(),12);
-	                  selectCell(table.getSelectedRow(),13);table.setValueAt(txtNcuenta.getText(),table.getSelectedRow(),13);
-	                  selectCell(table.getSelectedRow(),14);table.setValueAt(txtFechanacimiento.getText(),table.getSelectedRow(),14);
-	                  selectCell(table.getSelectedRow(),15);table.setValueAt(txtFechainicio.getText(),table.getSelectedRow(),15);
-	                  selectCell(table.getSelectedRow(),16);table.setValueAt(txtComentarios.getText(),table.getSelectedRow(),16);	                  
-	                  
-	                  txtId.setText(""); txtNombre.setText("");		txtPrimerApellido.setText("");	txtSegundoApellido.setText("");
-	                  txtDireccion.setText("");	txtTelefono.setText("");txtCifnif.setText("");           	 
-	             	  txtPoblacion.setText("");txtCp.setText("");
-	             	  txtSexo.setText("");txtMovil.setText("");txtFax.setText("");
-	             	  txtEmail.getText();txtNcuenta.getText(); txtFechanacimiento.setText("");
-	             	  txtFechainicio.setText("");txtComentarios.setText("");       
-	                  //Consulta.modificar(i,Integer.parseInt(id), nombre, PrimerApellido, SegundoApellido, Direccion, Integer.parseInt(Telefono), Ocupacion);
-            	 }    	 
+        	 Clientes modiCliente = new Clientes(
+        			 Integer.parseInt(txtId.getText()), 
+        			 txtNombre.getText(), 
+        			 txtPrimerApellido.getText(), 
+        			 txtSegundoApellido.getText(), 
+        			 txtCifnif.getText(), 
+        			 txtDireccion.getText(), 
+        			 txtPoblacion.getText(), 
+        			 Integer.parseInt(txtCp.getText()), 
+        			 Boolean.getBoolean(txtSexo.getText()), 
+        			 Integer.parseInt(txtTelefono.getText()), 
+        			 Integer.parseInt(txtMovil.getText()),
+        			 Integer.parseInt(txtFax.getText()), 
+        			 txtEmail.getText(), 
+        			 txtNcuenta.getText(), 
+        			 txtFechanacimiento.getText(),
+        			 txtFechainicio.getText(),
+        			 txtComentarios.getText());
+        	 cmdChange.setEnabled(false);
+        	 cmdDelete.setEnabled(false);
+        	 cmdSetValue.setEnabled(true);
+        	 txtId.setEnabled(true);
+        	 
+
+	 		 ConsultaClientes.modificar(modiCliente);
+             try {
+				DefaultTableModel tabModel=ConsultaClientes.buildTableModel();
+				table.setModel(tabModel);
+				tabModel.fireTableDataChanged();
+				dejartextosenblanco();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
          }
+         
          if (source.getSource()==(JButton) cmdExit)
          	{            
         	 System.exit(0);                    
          	}    
     }
+private void dejartextosenblanco() {
+    txtId.setText(""); 
+    txtNombre.setText("");		
+    txtPrimerApellido.setText("");	
+    txtSegundoApellido.setText("");
+    txtDireccion.setText("");	
+    txtTelefono.setText("");
+    txtCifnif.setText("");           	 
+	txtPoblacion.setText("");
+	txtCp.setText("");
+	txtSexo.setText("");
+	txtMovil.setText("");
+	txtFax.setText("");
+	txtEmail.setText("");
+	txtNcuenta.setText(""); 
+	txtFechanacimiento.setText("");
+	txtFechainicio.setText("");
+	txtComentarios.setText("");       
+	
+}
 public static void main(String[] args) throws SQLException {
 	PantallaAltasCliente pan=new PantallaAltasCliente();
 }
-
 }

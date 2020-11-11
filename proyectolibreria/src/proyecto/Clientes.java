@@ -11,7 +11,7 @@ public class Clientes {
 	private String direccion;
 	private String poblacion;
 	private int cp;
-	private int sexo;
+	private boolean sexo;
 	private int telefono;
 	private int movil;
 	private int fax;
@@ -24,7 +24,7 @@ public class Clientes {
 	public Clientes() {
 		
 	}
-	public Clientes(int id, String nombre, String apellido1, String apellido2,String cifnif, String direccion, String poblacion, int cp, int sexo, int telefono, int movil, int fax, String email, String ncuenta, String fechanacimiento, String fechalta, String comentarios) {
+	public Clientes(int id, String nombre, String apellido1, String apellido2,String cifnif, String direccion, String poblacion, int cp, Boolean sexo, int telefono, int movil, int fax, String email, String ncuenta, String fechanacimiento, String fechalta, String comentarios) {
 		this.id=id;
 		this.nombre=nombre;
 		this.apellido1=apellido1;
@@ -92,10 +92,10 @@ public class Clientes {
 	public void setCp(int cp) {
 		this.cp = cp;
 	}
-	public int getSexo() {
+	public boolean getSexo() {
 		return sexo;
 	}
-	public void setSexo(int sexo) {
+	public void setSexo(boolean sexo) {
 		this.sexo = sexo;
 	}
 	public int getTelefono() {

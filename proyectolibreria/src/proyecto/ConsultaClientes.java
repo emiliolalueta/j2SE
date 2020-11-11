@@ -102,7 +102,8 @@ public class ConsultaClientes {
 			java.sql.Date fechaAltTab = new java.sql.Date(fechaAlt.getTime());
 			
 			Conexion.conectar();
-	        Conexion.sentencia.execute( "UPDATE CLIENTES SET" +	 " " + 		
+	        
+			Conexion.sentencia.execute( "UPDATE CLIENTES SET" +	 " " + 		
 	        		"NOMBRE" + "=" + "'" + cliente.getNombre() + "'" + "," +		
 	        		"APELLIDO1" + "=" + "'" + cliente.getApellido1() + "'" + "," +	
 	        		"APELLIDO2" + "=" + "'" + cliente.getApellido2() + "'" + "," +
@@ -110,16 +111,17 @@ public class ConsultaClientes {
 	        		"DIRECCION" + "=" + "'" + cliente.getDireccion() + "'" + "," +		        		
 	        		"POBLACION" + "=" + "'" + cliente.getPoblacion() + "'" + "," +	
 	        		"CP"   + "=" + "'" + cliente.getCp() + "'" + "," +	
-	        		"SEXO" + "=" + "'" + cliente.getSexo() + "'" + "," +	
+	        		"SEXO" + "=" + cliente.getSexo() + "," +	
 	        		"TELEFONO" + "=" + "'" + cliente.getTelefono() + "'" + "," +
 	        		"MOVIL" + "=" + "'" + cliente.getMovil() + "'" + "," +	
 	        		"FAX" + "=" + "'" + cliente.getFax() + "'" + "," +	
 	        		"EMAIL" + "=" + "'" + cliente.getEmail() + "'" + "," +	
 	        		"NCUENTA" + "=" + "'" + cliente.getNcuenta() + "'" + "," +	
-	        		"FECHANACIMIENTO" + "=" + "'" + fechaNacTab + "'" + "," +	
-	        		"FECHAINICIO" + "=" + "'" + fechaAltTab + "'" + "," +	
+	        		"FECHANACIMIENTO" + "=" + "'" + cliente.getFechaNacimiento() + "'" + "," +	
+	        		"FECHAINICIO" + "=" + "'" + cliente.getFechaAlta() + "'" + "," +	
 	        		"COMENTARIOS" + "=" + "'" + cliente.getComentarios() + "'" +	        		
-	        		"WHERE ID" + "=" + "'" + cliente.getId() + "'" );		        		     
+	        		"WHERE ID" + "=" + "'" + cliente.getId() + "'" );	
+	        
 			}
 		catch(Exception e){	
 				System.out.println(e);
@@ -172,7 +174,7 @@ public class ConsultaClientes {
 				 cliente.setDireccion(resultado.getString("DIRECCION"));
 				 cliente.setPoblacion(resultado.getString("POBLACION"));
 				 cliente.setCp(resultado.getInt("CP"));
-				 cliente.setSexo(resultado.getInt("SEXO"));
+				 cliente.setSexo(resultado.getBoolean("SEXO"));
 				 cliente.setTelefono(resultado.getInt("TELEFONO")); 				  		  
 				 cliente.setMovil(resultado.getInt("MOVIL")); 
 				 cliente.setFax(resultado.getInt("FAX")); 
