@@ -1,0 +1,28 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="../js/generar.js"></script>
+    </head>
+    <body>
+        <form action="../generar" method="POST" name="form1">
+            <span id="lblp">Empleado</span>
+            <input type="text" name="txtemp" value="" /><br>
+             <span id="lbl">Departamento</span>
+             <select name="cmbdept">
+                 <option value="10">10</option>
+                 <option value="20">20</option>
+                 <option value="30">30</option>
+                 <option value="40">40</option>
+             </select>
+             <input type="checkbox" name="chkincluir" value="ON" /><br>
+             <input type="button" value="Generar" onclick="generarLink()"/><br>
+             <span id="lbllink"></span>
+        </form>
+    </body>
+</html>

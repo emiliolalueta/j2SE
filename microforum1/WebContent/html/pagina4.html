@@ -1,0 +1,80 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            input
+            {
+             width:110px;
+             background-color: yellow;
+            }
+             .boton
+            {
+             width:110px;
+             background-color: red;
+            }
+            img 
+            {
+                width:110px;
+                height: 90px;
+                margin:3px;
+            }
+            .estilodiv
+            {
+                float: left;
+                width:120px;
+                height:135px;
+                border: 1px solid fuchsin;
+                margin:4px;
+                padding:0px;               
+            }
+            
+        </style>
+        <script language="javascript">
+            function eliminarElemento()
+            {
+                var objeto=document.getElementById("capa1");
+                objeto.style.display="none";
+            }
+            function ocultarElemento()
+            {
+                var objeto=document.getElementById("capa2");
+                objeto.style.visibility="hidden";
+            }
+            
+            
+            function iniciarElemento()
+            {
+                var capa1=document.getElementById("capa1");
+                var capa2=document.getElementById("capa2");
+                capa1.style.display="block";
+                capa2.style.visibility="visible";
+            }
+            
+            
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div><br><br><br></br>
+        <div class="estilodiv" id="capa1">
+            imagen 1 <br><br><br>
+            <img src="imagen1.jpg">
+            <input type="button" value="Eliminar" onclick="eliminarElemento()"/>            
+        </div>
+        <div class="estilodiv"  id="capa2">
+            imagen 2 <br><br><br>
+            <img src="imagen2.jpg">
+            <input class="boton" type="button" value="Ocultar" onclick="ocultarElemento()"/>
+        </div>
+        <div class="estilodiv "id="capa3">
+            imagen 2 <br><br><br>
+            <img src="imagen3.jpg">
+            <input type="button" value="Iniciar" onclick="iniciarElemento()"/>
+        </div>
+    </body>
+</html>

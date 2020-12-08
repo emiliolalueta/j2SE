@@ -1,0 +1,47 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script language="javascript"> 
+        function sumarCantidad()
+        {
+            var suma=0;
+            for (var i=0;i<document.form1.elements.length;i++)
+            {
+                var elem=document.form1.elements[i];
+                if(elem.type=="checkbox")
+                {    
+                    if(elem.checked==true)
+                        {
+                            suma=suma+parseInt(elem.value);
+                        }
+                }        
+            }
+            var lbltotal=document.getElementById("lbltotal");
+            lbltotal.innerHTML=suma + " E";
+            document.form1.txttotal.value=suma + " E";
+        }
+    </script>
+    </head>
+    <body>
+        <form name="form1">
+            <input type="checkbox" name="chkropa" value="219" />
+            <span id="lblropa">Ropa 219 euros</span><br><br></br>                   
+            <input type="checkbox" name="chkalimentacion" value="150" />
+            <span id="lblalimentacion">Alimentacion  150 euros</span><br><br></br>    
+            <input type="checkbox" name="chkelectronica" value="200" />            
+            <span id="lblelectronica">Electronica  200 euros</span><br><br></br>
+            <span id="lbltota">Total:   </span>
+            <span id="lbltotal"></span><br><br></br>
+            <input type="text" name="txttotal"/>
+            <input type="button" value="Mostrar datos" onclick="sumarCantidad()"/>
+        </form>
+   
+        
+    </body>
+</html>

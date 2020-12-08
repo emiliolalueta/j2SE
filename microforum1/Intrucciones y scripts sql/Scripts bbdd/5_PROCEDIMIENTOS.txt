@@ -1,0 +1,344 @@
+
+--NO ejecutes todo esto de golpe. Ve pegando cada "Create" hasta el "End" en SQL Developer
+-- y ejecutalo por separado. Paso a paso. 
+--*********************************************************/
+--***procedimientos**************************************
+
+Create or replace procedure
+        buscarEmpleado_id(numero emp.emp_no%type)
+    As
+    Begin
+	    Declare
+		    Ape varchar2(30);
+	    begin
+		    Select apellido into ape from emp where emp_no=numero;
+		    DBMS_OUTPUT.PUT_LINE(ape);
+    End;
+End;
+
+
+
+Create or replace procedure
+        deleteEmpleado(numero emp.emp_no%type)
+    As    
+    Begin
+        delete from emp where emp_no=numero;
+        if sql%notfound then
+               DBMS_OUTPUT.PUT_LINE('no borrado');
+        else
+               DBMS_OUTPUT.PUT_LINE('borrado');
+        end if;             
+End;
+    
+
+Create or replace procedure
+        mostraroficioemp(p_oficio emp.oficio%type)
+    As    
+    begin
+        declare
+            ape emp.apellido%type;
+            cursor consulta is
+            select apellido from emp
+            where upper (oficio) =upper(p_oficio);   
+         begin 
+            open consulta;
+            loop
+                fetch consulta into ape;
+                exit when consulta%notfound;
+                DBMS_OUTPUT.PUT_LINE(ape);
+            end loop;
+            close consulta;
+         end;                
+    end;
+
+--PROCEDIMIENTOS ALMACENADOS
+
+
+Create or replace procedure
+        mostrar_empleados(fecha_inicial  emp.fecha_alt%type,fecha_fin  emp.fecha_alt%type)
+    As    
+    begin
+        declare    
+        ape varchar2(50) ;
+        begin             
+            select apellido into ape from emp where '1/1/2000' < fecha_inicial AND fecha_fin < '1/1/2012';  
+         end;                
+    end;
+
+
+
+Create or replace procedure
+        buscarnomnum_id(numero emp.dept_no%type)
+    As  
+    begin
+	    declare
+		    cadena1 varchar2(30);
+            cadena2 int;
+            cadena3 int;
+	    begin		  
+            select apellido, dept_no, count(dept_no) into  cadena1,  cadena2,  cadena3 from emp where dept_no=numero;		    
+        end;
+    end;
+
+
+
+
+Create or replace procedure
+        insertar_empleado(numero emp.emp_no%type, apellido emp.apellido%type,oficio emp.oficio%type,dir emp.dir%type,fecha_alt emp.fecha_alt%type,salario emp.salario%type,comision emp.comision%type,dept_no emp.dept_no%type);
+    As    
+	    Declare
+		    cadena1 varchar2(50) ;
+            cadena2 int;
+            cadena3 int;
+	    begin
+		    insert  
+		    DBMS_OUTPUT.PUT_LINE (cadena);
+        End;
+
+
+
+--****************Funciones*****************************
+
+
+create or replace function
+contar (ofi varchar2) return int
+Is
+numero int;
+Begin
+    select count (*) into numero from emp where upper(oficio)=upper(ofi);
+    Return numero;
+End;
+
+
+
+
+
+--****************paquetes**************
+
+Create or replace package 
+Paqueteempleados
+Is
+Procedure eliminarempleado(v_emp int);
+Function maximosalario return int;
+Apellido emp.apellido%type;
+End paqueteempleados;
+
+
+Create or replace package body 
+Paqueteempleados
+Is
+    Procedure eliminarempleado(v_emp int)
+    as
+    begin
+        delete from emp where emp_no=v_emp;
+    end;
+    function maximosalario return int
+    as
+        v_salario int;
+    begin
+        select max(salario) into v_salario from emp;
+        return v_salario;
+    end;
+end;
+
+/************************************
+create or replace package pk_sobrecarga
+is
+    procedure mostrarempleados(v_dept int);
+    procedure mostrarempleados(v_nombre varchar2);
+end;
+
+create or replace package body pk_sobrecarga
+is
+    procedure mostrarempleados(v_dept int)
+    as
+    v_emp emp%rowtype;
+    cursor consulta is
+    select * from emp where dept_no=v_dept;
+    begin 
+    open consulta;
+    loop
+    fetch  consulta into v_emp;
+    exit when consulta%notfound;
+    dbms_output.put_line(v_emp.apellido);
+    end loop;
+    close consulta;    
+    
+    end;
+    procedure mostrarempleados(v_nombre varchar2)
+    as
+    v_emp emp%rowtype;
+    cursor consulta is
+    select * from emp where dept_no=(select dept_no from dept where upper(dnombre)=upper(v_nombre));
+    begin 
+        open consulta;
+        loop
+            fetch  consulta into v_emp;
+            exit when consulta%notfound;
+            dbms_output.put_line(v_emp.apellido);
+        end loop;
+        close consulta;    
+    end;  
+    
+end;
+
+
+-- A  partir de aqui  lo estoy revisando  no lo ejecutes de momento.
+/****************************************************/
+/********************trigger en oracle*****/
+--of columna va en el before after o instead of y es opcional
+
+create or replace trigger cambiodept
+after update
+on dept
+for each row
+declare
+    v_dept dept.dept_no%type;
+begin
+    v_dept:=:new.dept_no; 
+    dbms_output.put_line('departamento cambiado:' || v_dept);
+    update emp set dept_no=v_dept
+    where dept_no=:old.dept_no;
+end;
+
+
+--prueba el trigger
+
+
+
+
+create or replace trigger cambiodept
+after update of dept_no
+on dept
+for each row
+declare
+    v_dept dept.dept_no%type;
+begin
+    v_dept:=:new.dept_no; 
+    dbms_output.put_line('departamento cambiado:' || v_dept);
+    update emp set dept_no=v_dept
+    where dept_no=:old.dept_no;
+end;
+
+
+--impedir que se borre el presidente
+
+create or replace trigger controlpresi
+before delete
+on emp
+for each row
+declare
+    v_ofi emp.oficio%type;
+begin
+    v_ofi:=:old.oficio;
+    if(upper(v_ofi)='presidente') then 
+        dbms_output.put_line('presidente prohibido');
+        --lanza excepciones y deshace los cambios
+        raise_application_error(-20000,'el presi no se toca');
+    end if;    
+end;
+
+create or replace view vista_emp_doctor
+as 
+select emp_no,salario from emp
+union
+select doctor_no,salario from doctor;
+
+create or replace trigger controlvista
+instead of update
+
+on vista_emp_doctor
+for each row
+
+declare 
+v_emp int;
+begin
+    select emp_no into v_emp from emp where emp_no=:new.emp_no;
+    if (v_emp is null) then
+        update doctor set salario=:new.salario where doctor_no=v_emp;
+    else
+        update emp set salario=:new.salario where emp_no=v_emp;
+    end if;
+end;
+
+
+create or replace trigger controlpresi
+before delete
+on emp
+for each row
+when (old.oficio='presidente')
+begin
+    raise_application_error(-20000,'presi no se toca');
+end;
+
+
+
+create or replace trigger controlsalario
+before insert
+on emp
+for each row
+declare
+v_salario int;
+begin
+    select salario into v_salario from emp where emp_no=:new.dir;
+    if (:new.salario>v_salario) then
+        raise_application_error(-20000,'salario superior');
+    end if;
+end;
+
+
+
+/***** mientras se hacen cambios en una tabla se bloquea y no deja acceder a ella ni**************
+create or replace trigger controlsalario
+before update
+on emp
+for each row
+declare
+v_salario int;
+begin
+    select salario into v_salario from emp where emp_no=:new.dir;
+    if (:new.salario>v_salario) then
+        raise_application_error(-20000,'salario superior');
+    end if;
+end;
+
+
+
+create or replace package
+pk_variables
+is
+    director int ;
+    salario int;
+end;
+
+
+create or replace trigger controlsalario
+before update
+on emp
+for each row
+begin
+    pk_variables.director:=:new.dir;
+    pk_variables.salarioemp:=:new.salario;
+end;
+
+
+
+
+
+create or replace trigger controlsalario2
+after update
+on emp
+declare
+v_salario int;
+begin
+
+select salario into v_salario from emp where emp_no=pk_variables.director;
+    if (pk_variables.salarioemp>v_salario) then
+        raise_application_error(-20000,'salario no valido');
+    end if;
+end;
+
+
+
+
+ 

@@ -1,0 +1,78 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/iceblue.css"/>
+        <script type="text/javascript" src ="../js/tienda.js"></script>
+    </head>
+    <body>
+        <div>Tienda de ordenadores</div>
+        <form action="form">
+            <table border="5">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="radio" name="procesador" value="30000" />
+                                <span id="lblp">Pentium III 450 MHZ 30.000 pts</span><br>
+                            <input type="radio" name="procesador" value="35000" />
+                                <span id="lblpp">Pentium III 500 MHZ 35.000 pts</span><br>
+                            <input type="radio" name="procesador" value="45000" />
+                                <span id="lblppp">Pentium III 550 MHZ 45.000 pts</span><br>
+                        </th>
+                        <th>
+                             <input type="radio" name="procesador" value="64" />
+                                <span id="lblr">64 Mb</span><br>
+                            <input type="radio" name="procesador" value="128" />
+                                <span id="lblrr">128 Mb</span><br>
+                            <input type="radio" name="procesador" value="256" />
+                                <span id="lblrrr">256 Mb</span><br>                            
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span id="lblrrr">Disco duro</span><br>   
+                            <select name="memoria">
+                                <option>12 Gb (40.000)</option>
+                                <option>20 Gb (60.000)</option>
+                            </select>
+                        </td>
+                        <td>
+                            <span id="lblm">Multimedia</span><br>   
+                            <input type="checkbox" name="chk1" value="ON" />
+                            <span id="lblc">Tarjeta de sonido 256 bit+ Altavoces (13.500 pts)</span><br>   
+                            <input type="checkbox" name="chk2" value="ON" />
+                            <span id="lblcc">DVD-ROM 6x (18.000 pts)</span><br>                              
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="lblmo">Monitores</span><br>                               
+                            <select name="lista">
+                                <option>15' (25000 pts)</option>
+                                <option>17' (47.000 pts)</option>
+                                <option>19' (21.000 pts)</option>
+                                <option>21' (134.000 pts)</option>
+                            </select>                            
+                        </td>
+                        <td>
+                            <span id="lblprecio">Precio</span><br>                              
+                            <input type="text" name="preciosin" value="" />
+                            <span id="lblprecio">Pts sin 15% de iva</span><br>
+                            <input type="text" name="preciocon" value="" />
+                            <span id="lblprecio">Pts con iva</span><br>
+                            <input type="button" value="Calcular precio" onclick="calcularPrecios()" />
+                            <input type="button" value="Enviar pedido" />                            
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+--Este script crea el usuario llamado "BBDD" en oracle.Ejecutalo desde el usuario SYSTEM.
+--Despues desde el sql developer, crea una conexion nueva al usuario creado (BBDD).
+--Con usuario BBDD  y contraseña BDD.
+--Los demas script, los ejecutaras desde el usuario "BBDD".
+
+CREATE USER BBDD IDENTIFIED BY BBDD;
+GRANT ALL PRIVILEGES TO BBDD;
+commit;

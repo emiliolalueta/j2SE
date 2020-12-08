@@ -1,0 +1,65 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script languaje="JavaScript">
+            function verMensaje(nombre)
+            {
+                var respuesta;
+                respuesta=window.confirm("¿Desea continuar?");
+                if(respuesta==true)
+                {
+                    alert('Bienvenido:  ' + nombre);
+                }
+            } 
+            function multiplicarNumeros()
+            {
+                var num1,num2;
+                num1=document.form1.txtnum1.value;
+                num2=document.form1.txtnum2.value;
+                document.form1.txtresultado.value=num1*num2;
+            }
+            function sumarNumeros()
+            {
+                var num1,num2;
+                num1=parseInt(document.form1.txtnum1.value);
+                num2=parseInt(document.form1.txtnum2.value);
+                document.form1.txtresultado.value=num1+num2;
+            }
+            function cambiarColor(objeto)
+            {
+                objeto.style.backgroundColor="red";
+            }
+            var contador=0;
+            function colorAutomatico()
+            {
+                var colores=new Array ("red","yellow","green","orange");
+                document.bgColor=colores[contador];
+                contador++;
+                if(contador==colores.length){
+                    contador=0;
+                }
+                
+                setTimeout("colorAutomatico()",100);
+            }
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <form name="form1">
+            <input type="Button" value="Pulsame" onClick="verMensaje('Adrian')"/><br><br>
+           Numero1:   <input type="text" name="txtnum1" value="" /><br><br>
+           Numero2:   <input type="text" name="txtnum2" value="" /><br><br>
+           Resultado: <input type="text" name="txtresultado" value="" /><br><br>
+            <input type="Button" value="Multiplicar" onclick="multiplicarNumeros()"/><br><br>
+            <input type="Button" value="Sumar" onclick="sumarNumeros()"/><br>             
+            <input type="Button"  onclick="cambiarColor(this)" value="Poner rojo" style="BackGround-Color: yellow;"/><br> 
+            <input type="Button" onclick="colorAutomatico()" value="colores" />
+        </form>
+    </body>
+</html>

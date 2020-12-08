@@ -1,0 +1,52 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script language="javascript">
+            function seleccionarPagina(lista)
+            {                
+                var etiqueta=document.getElementById("lbldireccion");
+                var indice=lista.selectedIndex;
+                var texto=lista.options[indice].text;
+                var valor=lista.options[indice].value;
+                var link="<a href='" + valor + "'>" + texto + "</a>";
+                etiqueta.innerHTML=link;
+                document.form1.txtdireccion.value=valor;
+            }
+            function mostrarDatos()
+            {                
+                var lista=document.form1.cmbpaginas;
+                var elementos=lista.options.length;
+                var indice=lista.selectedIndex;
+                var texto=lista.options[indice].text;
+                var valor=lista.options[indice].value;
+                alert("Numero elementos:" + elementos + "\n Indice:" + indice + "\n Texto:" + texto + "\n Valor:" + valor);
+            }
+            function navegarDireccion()
+            {
+                var pagina=document.form1.txtdireccion.value;
+                window.location.href=pagina;
+            }
+        </script>
+    </head>
+    <body>
+        <form name="form1" onLoad="navegarDireccion()">
+            <select name="cmbpaginas" onchange="seleccionarPagina(this)">
+                <option value="http://www.google.es">Google</option>
+                <option value="http://www.facebook.es">Facebook</option>
+                <option value="http://www.terra.es">Terra</option>
+                <option value="http://www.yahoo.es">Yahoo</option>                
+            </select><br><br><br>      
+            <span id="lblpag">Pagina</span><br><br>
+            <input type="text" name="txtdireccion" value="" />
+            <input type="Button" value="Ir" onClick="navegarDireccion()"/>
+            <span id="lbldireccion"></span><br><br>
+            <input type="button" value="Mostrar datos" onClick="mostrarDatos()"/>
+        </form>
+    </body>
+</html>

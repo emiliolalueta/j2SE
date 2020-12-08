@@ -1,0 +1,37 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script language="javascript">
+            function mostrarPrecio()
+            {
+                for(var i=0;i<document.form1.rdbprecio.length;i++)
+                    {                        
+                        var elem=document.form1.rdbprecio[i];
+                        if(elem.checked==true)
+                            {
+                                document.form1.txtprecio.value=elem.value+ " E";
+                            }                        
+                    }                
+            }
+        </script>
+    </head>
+    <body>
+        <form name="form1">
+            <input type="radio" name="rdbprecio" value="220"/>
+            <span id="lblropa">Ropa 220 euros</span><br><br></br>     
+            <input type="radio" name="rdbprecio" value="110"/>
+            <span id="lblalimentacion">Alimentacion 110 euros</span><br><br></br>     
+            <input type="radio" name="rdbprecio" value="120"/>       
+            <span id="lblelectronica">Electronica 120 euros</span><br><br></br>     
+            <span id="lblpre">Precio:    </span>  
+            <input type="text" name="txtprecio" value="" /><br><br></br>
+            <input type="button" value="Ver Seleccionado" onclick="mostrarPrecio()" />
+        </form>
+    </body>
+</html>

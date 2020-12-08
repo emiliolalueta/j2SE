@@ -1,0 +1,18 @@
+
+- Primero ejecuta los script de BBDD en SQL Developer. Que encontraras dentro del proyecto.
+
+- Añade el proyecto al servidor Tomcat.
+- Levanta el servidor  e introduce en el navegador este enlace:
+
+  http://localhost:8090/microforum1/
+
+
+-Igual tienes que cambiar el puerto por  el 8080. 
+ O el puerto que tengas en el servidor.Por ejemplo:
+
+
+
+ http://localhost:8080/microforum1/
+ 
+ 
+ 

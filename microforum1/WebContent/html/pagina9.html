@@ -1,0 +1,40 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/iceblue.css"/>
+        <script type="text/javascript" src ="js/funciones.js"></script>
+        <script languaje="javascript">
+            
+            function verdatos()
+            {               
+                document.form1.txtfecha.value=devolverFecha();
+                document.form1.txthora.value=devolverhora();                
+            }
+        </script>
+    </head>
+    <body>
+        <form name="form1">
+            <span id="lblfecha">Fecha:  </span>
+            <input type="text" name="txtfecha" value="" /><br><br><br>
+            
+            <span id="lblhora">Hora:     </span>
+            <input type="text" name="txthora" value="" /><br><br><br>
+            <input type="submit" value="Mensaje Fecha" onClick="alert(devolverFecha())" />
+            <input type="submit" value="Mostrar datos" onclick="document.form1.txtfecha.value=devolverFecha()"/><br><br><br><br><br><br>
+            
+            <a href="javascript:alert(devolverFecha())"/>Mostrar fecha</a><br>
+            <a href="javascript:document.form1.txtfecha.value=devolverFecha()"/>Mostrar fecha en otra pagina</a><br>
+            <span id="lblverfecha">Ver fecha</span><br><br>
+            <input type="button" value="Dibujar tabla" onclick="dibujarTabla()"/>
+            <span id="lbltexto">Texto:   </span>
+            <input type="text" name="txttexto" value="" /><br><br><br>
+            <span id="lbltabla">   </span>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script language="javascript">
+            function entrarImagen(objeto)
+            {
+                objeto.src="imagen2.jpg";
+            }
+            function salirImagen(objeto)
+            {
+                objeto.src="imagen1.jpg";                
+            }
+            function cambiarImagen(imagen)
+            {                    
+                var objeto=document.getElementById("img1");
+                objeto.src=imagen;
+            }
+            
+        </script>
+    </head>
+    <body>
+        <div>Ejemplo de images</div><br><br></br>
+        <img id ="img1" src="imagen1.jpg" width="100" height="100" alt="imagen1" onmouseover="entrarImagen(this)" onmouseout="salirImagen(this)"/><br><br></br>
+        <img src="imagen2.jpg" width="174" height="149" alt="imagen2" onmouseout="salirImagen(this)"/><br><br>
+        <input type="button" value="Cambiar"  onclick="cambiarImagen('imagen2.jpg')";/><br><br><br><br>
+        
+        
+        
+    </body>
+</html>
