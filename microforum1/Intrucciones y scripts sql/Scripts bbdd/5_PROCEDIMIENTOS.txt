@@ -86,7 +86,7 @@ Create or replace procedure
 Create or replace procedure
         insertar_empleado(numero emp.emp_no%type, apellido emp.apellido%type,oficio emp.oficio%type,dir emp.dir%type,fecha_alt emp.fecha_alt%type,salario emp.salario%type,comision emp.comision%type,dept_no emp.dept_no%type);
     As    
-	    Declare
+	    declare
 		    cadena1 varchar2(50) ;
             cadena2 int;
             cadena3 int;

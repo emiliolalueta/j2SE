@@ -16,7 +16,7 @@
     </head>
     <body bgcolor="lightblue">
     <center>
-        <form name="jubilados" action="carrito.jsp" method="POST">
+        <form name="jubilados" action="carrito_1.jsp" method="POST">
             <%
             Statement sentencia;
             ResultSet registros;
@@ -55,7 +55,7 @@
                         int numpagina=1;
                         for(int i=0;i<num;i+=3)
                         {%>
-                        <td><a href=carrito.jsp?valor=3&pos=<%=i+1%>><%=numpagina%></a></td>
+                        <td><a href=carrito_1.jsp?valor=3&pos=<%=i+1%>><%=numpagina%></a></td>
                         <%numpagina++;                    
                         }%>
                     </tr>
@@ -79,12 +79,9 @@
                             for (int i=0;i<listapeliculas.length;i++)
                             {
                                 //ahorroEmp +=Integer.parseInt(listapeliculas[i]);
-                                lista.put(listapeliculas[i].toString(),0);
+                                lista.put(listapeliculas[i].toString(),i);
                             }
-                            for (int i=0;i<listapeliculas.length;i++)
-                            {
-                               
-                            }
+                            
                             sesion.setAttribute("carrito",lista);
                         }
                     }else
@@ -138,5 +135,6 @@
                         //**********************************************************
                     }%>
     </center>
+    <a href="index.jsp">
     </body>
 </html>

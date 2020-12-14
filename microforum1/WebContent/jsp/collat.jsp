@@ -11,7 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>        
+    <body>  
+		<form name="form1" method="POST">     
         <span>Collatz</span>
         <input type="text" name="txtvalor" value="" />
         <input type="submit" value="Mostrar Serie" />
@@ -34,5 +35,6 @@
         <%}%>
         </ul>        
         <%}%>
+        </form>
     </body>
 </html>
