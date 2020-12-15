@@ -17,7 +17,7 @@
         <input type="text" name="txtvalor" value="" />
         <input type="submit" value="Mostrar Serie" />
         <%        
-        if(request.getParameter("txtvalor")!=null)
+        if(request.getParameter("txtvalor")!="")
         {            
          %><ul><%
         int num=Integer.parseInt(request.getParameter("txtvalor"));       

@@ -26,22 +26,25 @@
                 %>
                 <h<%=i%>>Mensaje <%=i%> </h<%=i%>>
                 
-                <input type="text" name="txtpar" value="" />
+                <input type="text" name=<%="txtpar" + i%> value="" />
                 <input type="submit" value="ver par" />
                 
                 <%= new java.util.Date().toString() %>
                 <%
                 
-                if (request.getParameter("txtpar")!=null)
+                if (request.getParameter("txtpar" + i)!="")
                 {
-                        int num=Integer.parseInt(request.getParameter("txtpar"));
+                        int num=Integer.parseInt(request.getParameter("txtpar" + i));
                         if(num%2==0)
                         {%>
                             <h1>Es par</h1>                            
                         <%}else {%>                                    
                				<h1>Es impar</h1>               				
                         <%}
-                }                
+                }else
+                {
+                	%><h1>Esta vacio</h1><%
+                }
            }%>     
            
            
