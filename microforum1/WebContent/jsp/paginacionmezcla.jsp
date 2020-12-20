@@ -43,12 +43,27 @@
         }
         
        String  orden=request.getParameter("txtorden");
+       String  orde=request.getParameter("txtnumpaginas");
+       
         try
         {                      
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
         Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
         Statement sentencia=cn.createStatement();
-        consulta="select apellido,salario,oficio from (select tablaemp.*,rownum rnum from(select apellido,salario,oficio from emp order by apellido)tablaemp where rownum<"+(posicion+5)+")where rnum>="+posicion;
+        String seleccionado = request.getParameter("lstorden");
+        String seleccionado2=request.getParameter("lstnumpaginas");
+        int registros=0;
+        if (seleccionado==null){
+        	seleccionado = "apellido";
+        }
+        if (seleccionado2==null){
+        	registros = 5;
+        }else{
+        	 registros = Integer.parseInt(seleccionado2);
+        }
+        //consulta="select apellido,salario,oficio from (select tablaemp.*,rownum rnum from(select apellido,salario,oficio from emp order by apellido)tablaemp where rownum<"+(posicion+5)+")where rnum>="+posicion;
+        consulta="select apellido,salario,oficio from (select tablaemp.*,rownum rnum from(select apellido,salario,oficio from emp order by " + seleccionado + " )tablaemp where rownum<"+(posicion+registros)+")where rnum>="+posicion;
+        
         
         ResultSet rs=sentencia.executeQuery(consulta);        
         Statement sentencia2=cn.createStatement();
@@ -67,30 +82,94 @@
         }
         tabla +="</table>";
         int numpagina=1;
-        for(int i=0;i<numeroregistros; i+=5)
+        for(int i=0;i<numeroregistros; i+=registros)
         {
             int aux=i+1;
             tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "'>" + numpagina + "</a>&nbsp;";
             numpagina++;        
         }%>
         <span>Orden</span>
+        <!-- 
         <select name="lstorden" onchange="crearOrden()">
-            <option>apellido</option>
+            <option value='selected'>apellido</option>
             <option>oficio</option>
             <option>salario</option>
         </select>
+         -->
+        <% String Combo="";
+        if (seleccionado == null){
+        	Combo += "<select name='lstorden' onchange='crearOrden()'>";
+        	Combo += "<option>apellido</option>";
+        	Combo += "<option>oficio</option>";
+        	Combo += "<option>salario</option>";
+        	Combo += "</select>";
+        }else{
+        	Combo += "<select name='lstorden' onchange='crearOrden()'>";
+        	if (seleccionado.equals("apellido")){
+        		Combo += "<option selected>apellido</option>";
+        	}else{
+        		Combo += "<option>apellido</option>";
+        	}
+        	if (seleccionado.equals("oficio")){
+        		Combo += "<option selected>oficio</option>";
+        	}else{
+        		Combo += "<option>oficio</option>";
+        	}
+        	if (seleccionado.equals("salario")){
+        		Combo += "<option selected>salario</option>";
+        	}else{
+        		Combo += "<option>salario</option>";
+        	}
+        	Combo += "</select>";
+        }
+        %>
+        <%= Combo %>
+                
         <br> <br>
         <span>Paginacion</span>
+        <!-- 
         <select name="lstnumpaginas" onchange="crearOrden()">
             <option>5</option>
             <option>10</option>
             <option>15</option>
         </select>
+         -->
+        <%
+        String Combo2="";
+        Combo2 +="<select name='lstnumpaginas' onchange='crearOrden()'>";
+        if (seleccionado2 == null){
+        	Combo2 += "<option>5</option>";
+        	Combo2 += "<option>10</option>";
+        	Combo2 += "<option>15</option>";
+        }
+        else
+       	{
+            if (seleccionado2.equals("5")){
+        		Combo2 += "<option selected>5</option>";
+        	}else{
+        		Combo2 += "<option>5</option>";
+        	}
+        	if (seleccionado2.equals("10")){
+        		Combo2 += "<option selected>10</option>";
+        	}else{
+        		Combo2 += "<option>10</option>";
+        	}
+        	if (seleccionado2.equals("15")){
+        		Combo2 += "<option selected>15</option>";
+        	}else{
+        		Combo2 += "<option>15</option>";
+        	}
+
+        }
+       	
+        Combo2 +="</select>";
+       	%>
+       	<%= Combo2 %>
         <br> <br>
           <%=tabla%>
           
           <input type="text" name="txtorden" value="<%=orden%>" />
-          <input type="text" name="txtnumpaginas" value="" />
+          <input type="text" name="txtnumpaginas" value="<%=orde%>" />
           
          <%}catch(Exception ex)
           {%><h1>Error<%=ex.toString()%></h1>>

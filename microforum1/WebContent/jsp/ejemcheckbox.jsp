@@ -35,7 +35,7 @@
                                 {%>
                                     <tr><td><input type="checkbox" name="chkfruta"
                                     value="<%=frutas[i]%>"><%=frutas[i]%></td></tr>
-                                    <%}else{%>
+                                 <%}else{%>
                                     <tr><td><input type="checkbox" name="chkfruta" checked value="<%=frutas[i]%>"><%=frutas[i]%></td></tr>
                                     <%}%>
                                     <%}

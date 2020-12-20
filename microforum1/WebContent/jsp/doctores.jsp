@@ -23,7 +23,7 @@
         ResultSet rs=st.executeQuery("select nombre,hospital_cod from hospital");
         ArrayList<String> cod=new ArrayList<String>();
         String[] datos;
-        datos = request.getParameterValues("hospital_cod");
+        datos = request.getParameterValues("hospital");
         if (datos != null)
         {
             for (String d: datos)
@@ -41,12 +41,12 @@
         <%if(!cod.isEmpty()){
         %><table><%
         String param=" ";
-            for(int c=-1;c<=datos.length;c++)
+            for(int c=0;c<=datos.length-1;c++)
             {
                 param +=datos [c] + ",";
             }    
               param=param.substring(0,param.lastIndexOf(","));
-              String consulta="select apellido,especialidad,salario from doctor where hospital_cod in (param)";
+              String consulta="select apellido,especialidad,salario from doctor where hospital_cod in (" + param+ ")";
             //Statement st=cn.Statement(consulta);
             //pst.setString(1,cod.get(c));
              rs=st.executeQuery(consulta);           

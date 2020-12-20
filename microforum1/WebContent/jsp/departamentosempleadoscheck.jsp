@@ -13,6 +13,7 @@
         <script language="javascript" type="text/javascript">
             function mostrarDatos()
             {
+                //valor del departamento
                 var dept = document.form1.cmbdept.options[document.form1.cmbdept.selectedIndex].value;
                 var elem = document.form1.txtelem.value;
                 var pagina = "departamentosempleadoscheck.jsp?datos=1&txtelem=" + elem + "&cmbdept=" + dept;
@@ -26,10 +27,19 @@
         <form name="form1" method="get">
         <h1>Datos de empleados</h1>
         <%
+        //Combo tiene el departamento
+        String dept_no = request.getParameter("cmbdept");
+
         String elementos = request.getParameter("txtelem");
+        String[] seleccionados = request.getParameterValues("chkemp");
+        /*for(int i=0; i<seleccionados.length; i++){
+            out.println("<pre> "+seleccionados[i]+"</pre>");
+         }*/
+        System.out.println("<pre> "+ seleccionados + "</pre>");
+        
         ArrayList<String> listaempleados = new ArrayList<String>();
         ArrayList<String> listaaux = new ArrayList<String>();
-        String[] seleccionados = request.getParameterValues("chkemp");
+        
         if (seleccionados != null)
         {
             for (String d: seleccionados)
@@ -69,7 +79,7 @@
         String consulta = "select DEPT_NO, DNOMBRE FROM DEPT";
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(consulta);
-        String dept_no = request.getParameter("cmbdept");
+        
         String combo = "<select name='cmbdept' onchange='document.form1.submit()'>";
         while (rs.next())
         {
@@ -92,13 +102,13 @@
         if (request.getParameter("datos")!= null)
         {
             elementos = elementos.substring(0,elementos.lastIndexOf(","));
-            consulta = "SELECT COUNT(EMP_NO) AS PERSONAS, SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA FROM EMP WHERE EMP_NO IN (" + elementos + ")";
+            consulta = "SELECT COUNT(EMP_NO) AS PERSONAS, SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA FROM EMP WHERE DEPT_NO IN (" + request.getParameter("cmbdept") + ")";
             rs = st.executeQuery(consulta);
-            String personas, suma, media;
+            Double personas, suma, media;
             rs.next();
-            personas = rs.getString("PERSONAS");
-            suma = rs.getString("SUMA");
-            media = rs.getString("MEDIA");
+            personas = rs.getDouble("PERSONAS");
+            suma = rs.getDouble("SUMA");
+            media = rs.getDouble("MEDIA");
             rs.close();
             elementos = elementos + ",";
         %>

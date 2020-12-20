@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+ <html>
+    <head>
+        <script language="javascript" type="text/javascript">
+            function mostrarDatos()
+            {
+                //valor del departamento
+            	//var dept = document.form1.cmbdept.options[document.form1.cmbdept.selectedIndex].value;
+                var elegidos = new Array();
+                var check = document.getElementsByName("chkemp");
+                //var texto = 
+                var cont = 0; 
+
+                for (var x=0; x < check.length; x++) {
+                 if (check[x].checked) {
+                  cont = cont + 1;
+                  elegidos.push(check[x].value)
+                 }
+                }
+                var pagina = "departamentosempleadoscheck.jsp?datos=1&" + elegidos;
+                window.location.href = pagina;
+            }
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <form name="form1" method="get">
+			<h1>Datos de empleados</h1>
+			<br>
+			<table border='1'>
+			<tr><th></th><th>APELLIDO</th><th>SALARIO</th></tr>
+			<tr>
+				<td><input type='checkbox' name='chkemp' value="10"/></td>
+				<td>ape1</td>
+			</tr>
+			<tr>
+				<td><input type='checkbox' name='chkemp' value="20"/></td>
+				<td>ape2</td>
+			</tr>
+			<tr>
+				<td><input type='checkbox' name='chkemp' value="30"/></td>
+				<td>ape3</td>
+			</tr>
+			<tr>				
+				<td><input type='checkbox' name='chkemp' value="40"/></td>
+				<td>ape4</td>
+			</tr>
+			<tr>
+				<td><input type='checkbox' name='chkemp' value="50"/></td>
+				<td>ape5</td>
+			</tr>
+			<input type="button" value="Mostrar resumen" onclick="mostrarDatos()"/><br>
+		</form>
+    </body>
+</html>

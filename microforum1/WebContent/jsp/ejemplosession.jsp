@@ -13,8 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body bgcolor="lightblue">
-    <center>
-        <form name="jubilados" action="ejemplosession.jsp" method="POST">
+       <form name="jubilados" action="ejemplosession.jsp" method="POST">
             <%
             Statement sentencia;
             ResultSet registros;
@@ -84,6 +83,6 @@
                     {
                         sesion.setAttribute("ahorro",String.valueOf(ahorroEmp));
                     }%>
-    </center>
+    
     </body>
 </html>
