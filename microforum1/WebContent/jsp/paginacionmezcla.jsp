@@ -19,8 +19,8 @@
             var orden=document.form1.lstorden.value;
             var orde=document.form1.lstnumpaginas.value;            
             
-            document.form1.txtorden.value=orden;
-            document.form1.txtnumpaginas.value=orde;   
+            document.form1.seleccionado.value=orden;
+            document.form1.registros.value=orde;   
             document.form1.submit();
         }
       </script>
@@ -42,29 +42,37 @@
             posicion=1;
         }
         
-       String  orden=request.getParameter("txtorden");
-       String  orde=request.getParameter("txtnumpaginas");
+       	//String  orden=request.getParameter("txtorden");
+       	//String  orde=request.getParameter("txtnumpaginas");
        
         try
         {                      
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
         Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
         Statement sentencia=cn.createStatement();
+        
+        String orden = request.getParameter("orden");
+        String paginacion = request.getParameter("paginacion");
+        
         String seleccionado = request.getParameter("lstorden");
         String seleccionado2=request.getParameter("lstnumpaginas");
         int registros=0;
-        if (seleccionado==null){
+        if (seleccionado==null && orden==null){
         	seleccionado = "apellido";
         }
-        if (seleccionado2==null){
+        else if(orden!=null){
+        	seleccionado = orden;        	
+        }
+        if (seleccionado2==null && paginacion==null){
         	registros = 5;
-        }else{
+        }else if(seleccionado2!=null){
         	 registros = Integer.parseInt(seleccionado2);
+        }else{
+        	registros = Integer.parseInt(paginacion);
         }
         //consulta="select apellido,salario,oficio from (select tablaemp.*,rownum rnum from(select apellido,salario,oficio from emp order by apellido)tablaemp where rownum<"+(posicion+5)+")where rnum>="+posicion;
         consulta="select apellido,salario,oficio from (select tablaemp.*,rownum rnum from(select apellido,salario,oficio from emp order by " + seleccionado + " )tablaemp where rownum<"+(posicion+registros)+")where rnum>="+posicion;
-        
-        
+            
         ResultSet rs=sentencia.executeQuery(consulta);        
         Statement sentencia2=cn.createStatement();
         ResultSet rs2=sentencia2.executeQuery("select count(emp_no) as numero from emp");
@@ -85,7 +93,8 @@
         for(int i=0;i<numeroregistros; i+=registros)
         {
             int aux=i+1;
-            tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "'>" + numpagina + "</a>&nbsp;";
+            //tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "'>" + numpagina + "</a>&nbsp;";
+            tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "&orden=" + seleccionado + "&paginacion=" + seleccionado2 +"'>" + numpagina + "</a>&nbsp;";
             numpagina++;        
         }%>
         <span>Orden</span>
@@ -168,8 +177,8 @@
         <br> <br>
           <%=tabla%>
           
-          <input type="text" name="txtorden" value="<%=orden%>" />
-          <input type="text" name="txtnumpaginas" value="<%=orde%>" />
+          <input type="text" name="seleccionado" value="<%=seleccionado%>" />
+          <input type="text" name="registros" value="<%=registros%>" />
           
          <%}catch(Exception ex)
           {%><h1>Error<%=ex.toString()%></h1>>
