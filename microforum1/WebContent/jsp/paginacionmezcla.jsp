@@ -50,24 +50,25 @@
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
         Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
         Statement sentencia=cn.createStatement();
-        
+        //se consige de la URL
         String orden = request.getParameter("orden");
         String paginacion = request.getParameter("paginacion");
-        
+        //se consige de las combos
         String seleccionado = request.getParameter("lstorden");
         String seleccionado2=request.getParameter("lstnumpaginas");
         int registros=0;
         if (seleccionado==null && orden==null){
         	seleccionado = "apellido";
+        }else if(seleccionado!=null){
+        	seleccionado=seleccionado;
         }
         else if(orden!=null){
         	seleccionado = orden;        	
         }
-        if (seleccionado2==null && paginacion==null){
-        	registros = 5;
-        }else if(seleccionado2!=null){
+        registros = 5;
+        if(seleccionado2!=null){
         	 registros = Integer.parseInt(seleccionado2);
-        }else{
+        }else if(paginacion!=null){
         	registros = Integer.parseInt(paginacion);
         }
         //consulta="select apellido,salario,oficio from (select tablaemp.*,rownum rnum from(select apellido,salario,oficio from emp order by apellido)tablaemp where rownum<"+(posicion+5)+")where rnum>="+posicion;
