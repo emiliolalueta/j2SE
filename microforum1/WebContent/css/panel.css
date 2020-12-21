@@ -1,0 +1,25 @@
+/* 
+	Blue Dream
+	Written by Teylor Feliz  http://www.admixweb.com
+*/
+
+
+#panel {	
+	float: right;
+	margin-right:70px;
+	border: 1px solid #006699;
+	border: 1px solid #000000;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	padding: 10px;width: 900px;	
+}
+
+#invisible {	
+	float: right;
+	margin-right:70px;
+	border: 0px solid #006699;
+	border: 0px solid #000000;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	padding: 10px;width: 900px;	
+}

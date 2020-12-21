@@ -11,15 +11,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       
+        <link href="../css/panel.css" rel="stylesheet" type="text/css" />
+		
         <title>JSP Page</title>
     </head>
     <body>
+    
+    <div id="invisible"> 
+    
         <form name="form1" method="post">
         <h1>Paginar Clientes</h1>
         <%
+        Connection cn=null;
+        Statement st=null;
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-        Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
-        Statement st=cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        //try {        	
+        	
+         	cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
+         	st=cn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        //}catch (Exception e) {
+        	
+        //}
+        
         ResultSet rs=st.executeQuery("select nombre,direccion,email,cpostal,paginaweb,imagen_cliente from clientes");        
         int posicion,anterior,siguiente,ultimo;
         rs.last();
@@ -69,5 +83,9 @@
         %>     
         <%=tabla%>
         </form>
+       </div>
+        
+        <jsp:include page="menus/menu.jsp" flush="true"/>
+        
     </body>
 </html>

@@ -59,15 +59,15 @@
         <h2>Ejercicios de servlets: (Estoy revisandolos)</h2> <br/>
         <table border="4" align="left" bgcolor="">
          <tr>
-        <td><a href="ejerciciosservlets/Consulta.jsp">Ejemplo consulta</a> <br/></td>
-        <td><a href="ejerciciosservlets/Consultadatos.jsp">Ejemplo consulta datos</a> <br/></td>
-        <td><a href="ejerciciosservlets/Galletas.jsp">Ejemplo galletas</a> <br/></td>
+        <td><a href="ejerciciosservlets/Consulta.html">Ejemplo consulta</a> <br/></td>
+        <td><a href="ejerciciosservlets/Consultadatos.html">Ejemplo consulta datos</a> <br/></td>
+        <td><a href="ejerciciosservlets/Galletas.html">Ejemplo galletas</a> <br/></td>
         </tr>
         <tr>
-        <td><a href="ejerciciosservlets/generar.jsp">Ejemplo generar</a> <br/></td>
-        <td><a href="ejerciciosservlets/llamadaservlet.jsp">Ejemplo llamada servlet</a> <br/></td>
-        <td><a href="ejerciciosservlets/paginadoble.jsp">Ejemplo pagina doble</a> <br/></td>
-        <td><a href="ejerciciosservlets/tabladinamica.jsp">Ejemplo tabladinamica</a> <br/></td>
+        <td><a href="ejerciciosservlets/generar.html">Ejemplo generar</a> <br/></td>
+        <td><a href="ejerciciosservlets/llamadaservlet.html">Ejemplo llamada servlet</a> <br/></td>
+        <td><a href="ejerciciosservlets/paginadoble.html">Ejemplo pagina doble</a> <br/></td>
+        <td><a href="ejerciciosservlets/tabladinamica.html">Ejemplo tabladinamica</a> <br/></td>
         
          </tr>
         </table>
@@ -75,9 +75,9 @@
          <h2>Ejercicios de sueltos:(Estoy revisandolos)</h2> <br/>
           <table border="4" align="left" bgcolor="">
          <tr>
-         <td><a href="ejercicios/ejer1.jsp">Ejemplo ejercicio1</a> <br/></td>
-         <td><a href="ejercicios/ejer2.jsp">Ejemplo ejercicio2</a> <br/></td>
-         <td><a href="ejercicios/tiendaordenadores.jsp">Ejemplo tienda ordenadores</a> <br/></td>
+         <td><a href="ejercicios/ejer1.html">Ejemplo ejercicio1</a> <br/></td>
+         <td><a href="ejercicios/ejer2.html">Ejemplo ejercicio2</a> <br/></td>
+         <td><a href="ejercicios/tiendaordenadores.html">Ejemplo tienda ordenadores</a> <br/></td>
            </tr>
         </table>
         <br/><br/>
