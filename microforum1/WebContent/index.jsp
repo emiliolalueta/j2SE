@@ -53,6 +53,7 @@
         <td><a href="jsp/personalizarpaginacion.jsp">Ejemplo personalizar paginacion</a> <br/></td>        
         <td><a href="jsp/subordinados.jsp">Ejemplo subordinados (En revision)</a> <br/></td>
         <td><a href="jsp/verdatoseleccionados00.jsp">Ejemplo verdatoseleccionados (En revision)</a> <br/></td>
+        <td><a href="jsp/paginacionmezclados.jsp">Ejemplo paginacionmezcla (corregido)</a> <br/></td>        
         </tr>
         </table>
         
