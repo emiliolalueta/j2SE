@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <script languaje ="javascript">
+    <script type="text/javascript">
     	function pulsa(){
     		  var orden=document.form1.lstorden.value;            
               document.form1.txtorden.value=document.form1.lstorden.value;  
@@ -80,7 +80,7 @@
         }
         tabla +="</table>";
         int numpagina=1;
-        for(int i=0;i<numeroregistros; i+=5)
+        for(int i=0;i<numeroregistros; i+=registros)
         {
             int aux=i+1;
             //tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "'>" + numpagina + "</a>&nbsp;";
@@ -88,18 +88,69 @@
             numpagina++;        
         }%>
         <span>Orden</span>
+        <!-- 
         <select name="lstorden">
             <option>apellido</option>
             <option>oficio</option>
             <option>salario</option>
         </select>
+         -->
+        <%
+        String Combo="";
+        Combo += "<select name='lstorden' onchange='crearOrden()'>";
+       	if (orden.equals("apellido")){
+       		Combo += "<option selected>apellido</option>";
+       	}else{
+       		Combo += "<option>apellido</option>";
+       	}
+       	if (orden.equals("oficio")){
+       		Combo += "<option selected>oficio</option>";
+       	}else{
+       		Combo += "<option>oficio</option>";
+       	}
+       	if (orden.equals("salario")){
+       		Combo += "<option selected>salario</option>";
+       	}else{
+       		Combo += "<option>salario</option>";
+       	}
+       	
+       	Combo += "</select>";
+        
+        %>
+        <%= Combo %>
+        
         <br> <br>
         <span>Paginacion</span>
+        <!-- 
         <select name="lstnumpaginas">
             <option>5</option>
             <option>10</option>
             <option>15</option>
         </select>
+         -->
+                 <%
+        String Combo2="";
+        Combo2 +="<select name='lstnumpaginas' onchange='crearOrden()'>";
+        if (orde.equals("5")){
+       		Combo2 += "<option selected>5</option>";
+       	}else{
+       		Combo2 += "<option>5</option>";
+       	}
+       	if (orde.equals("10")){
+       		Combo2 += "<option selected>10</option>";
+       	}else{
+       		Combo2 += "<option>10</option>";
+       	}
+       	if (orde.equals("15")){
+       		Combo2 += "<option selected>15</option>";
+       	}else{
+       		Combo2 += "<option>15</option>";
+       	}
+       	
+        Combo2 +="</select>";
+       	%>
+       	<%= Combo2 %>
+         
         <br> <br>
           <%=tabla%>
           
