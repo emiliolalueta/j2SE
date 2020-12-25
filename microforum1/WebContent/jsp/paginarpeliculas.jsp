@@ -19,7 +19,7 @@
     <body>
     
     <div id="invisible"> 
-    
+    <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
         <form name="form1" method="post">
         <h1>Paginar Clientes</h1>
         <%
@@ -83,8 +83,7 @@
         %>     
         <%=tabla%>
         </form>
-       </div>
-        
+       </div>        
         <jsp:include page="menus/menu.jsp" flush="true"/>
         
     </body>

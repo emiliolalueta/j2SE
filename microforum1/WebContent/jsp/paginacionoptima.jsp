@@ -12,9 +12,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="../css/panel.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        
+         <div id="invisible"> 
+         <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
         <%
         // paginacion optima  solo para oracle
         
@@ -64,7 +66,8 @@
           {%><h1>Error<%=ex.toString()%></h1>>
           <%}%>          
  
-   
+    	</div>        
+        <jsp:include page="menus/menu.jsp" flush="true"/>
         
         
     </body>

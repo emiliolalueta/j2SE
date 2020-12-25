@@ -14,8 +14,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" media="screen" href="estilo1.css" />
+         <link href="../css/panel.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+    <div id="invisible"> 
+    <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
         <%DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
 Connection cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
 Statement st = cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -69,5 +72,7 @@ PreparedStatement pst = cn.prepareStatement("select Titulo,foto from peliculas w
             }%>
         </table>
       <%}%>
+       </div>        
+        <jsp:include page="menus/menu.jsp" flush="true"/>
     </body>
 </html>

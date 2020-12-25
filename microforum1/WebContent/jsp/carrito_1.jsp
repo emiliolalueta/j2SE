@@ -13,9 +13,14 @@
     <head>    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="../css/panel.css" rel="stylesheet" type="text/css" />
     </head>
-    <body bgcolor="lightblue">
-    <center>
+    <body>
+      
+    
+   <div id="invisible"> 
+   <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
+   
         <form name="jubilados" action="carrito_1.jsp" method="POST">
             <%
             Statement sentencia;
@@ -63,10 +68,22 @@
                 <br><br>
                 <center><input type="submit" name="anadir" value="Comprar peliculas"></center>                  
         </form>
-                <form name ="form2" action="compra_1.jsp" method="post">
+        <form name ="form2" action="compra_1.jsp" method="post">
                     <input type="submit" name="suma" value="ver carrito compra">
                     <%cn.close();%>
-                </form>
+        </form>
+     </div>        
+         <jsp:include page="menus/menu.jsp" flush="true"/>
+        
+    	<a href="index.jsp">  
+       
+       
+        
+        
+        
+        
+        
+        
                     <%
                     HttpSession sesion=request.getSession();                    
                     String [] listapeliculas=null;
@@ -134,7 +151,8 @@
                         //      }                        
                         //**********************************************************
                     }%>
-    </center>
-    <a href="index.jsp">
+     
+    
+   
     </body>
 </html>

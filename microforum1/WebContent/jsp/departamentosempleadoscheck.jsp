@@ -20,9 +20,12 @@
             }
         </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../css/panel.css" rel="stylesheet" type="text/css" />
         <title>JSP Page</title>
     </head>
     <body>
+    <div id="invisible"> 
+    <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
         <form name="form1" method="get">
         <h1>Datos de empleados</h1>
         <%
@@ -162,5 +165,8 @@
         <%}
         %>
         </form>
+        </div>
+        
+        <jsp:include page="menus/menu.jsp" flush="true"/>
     </body>
 </html>

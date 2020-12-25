@@ -10,9 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../css/panel.css" rel="stylesheet" type="text/css" />
         <title>JSP Page</title>
     </head>
     <body>
+    <div id="invisible"> 
+    <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
         <h1>Hospitales (En revision)</h1>
         <%DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
         Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
@@ -25,6 +28,10 @@
                        <%}
         rs.close();%>
         <input type="submit" value="Mostrar doctores"/>                              
-                
+      
+      
+      </div>
+        
+        <jsp:include page="menus/menu.jsp" flush="true"/>          
     </body>
 </html>

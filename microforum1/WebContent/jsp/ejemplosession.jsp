@@ -11,8 +11,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+         <link href="../css/panel.css" rel="stylesheet" type="text/css" />
     </head>
-    <body bgcolor="lightblue">
+    <body>
+    <div id="invisible"> 
+    <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
     <center>
         <form name="jubilados" action="ejemplosession.jsp" method="POST">
             <%
@@ -85,5 +88,8 @@
                         sesion.setAttribute("ahorro",String.valueOf(ahorroEmp));
                     }%>
     </center>
+    </div>
+        
+        <jsp:include page="menus/menu.jsp" flush="true"/>
     </body>
 </html>

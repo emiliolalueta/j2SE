@@ -12,7 +12,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />		
     </head>
     <body>
-        <center><h1>Programación en java</h1></center>
+        <center><h1>JavaScript</h1></center>
         
         
 <div style="float: right;margin-right:70px;border: 1px solid #006699;border: 1px solid #000000;
@@ -20,9 +20,10 @@
 -webkit-border-radius: 7px;
 padding: 10px;width: 900px;">
 
-<jsp:include page="jsp/menus/horizontal.jsp" flush="true"/>
+<jsp:include page="../menus/horizontalotro.jsp" flush="true"/>
 <br><br><br>
-<div>
+<div> 
+<center><h5>Enlaces de interés</h5></center>
 <ul>
 <li><h4>Esta es una página de ejercicios que hice en Microforum y demas ejemplos que voy recopilando.</h4></li>
 <li><h4>He cambiado el diseño de la página pero los ejercicios son los mismos.</h4></li>
@@ -36,7 +37,7 @@ padding: 10px;width: 900px;">
 </div>
 
 
-<jsp:include page="jsp/menus/menuprincipal.jsp" flush="true"/>
+<jsp:include page="../menus/menuotro.jsp" flush="true"/>
 
 </body>
 </html>

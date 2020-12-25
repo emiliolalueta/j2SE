@@ -81,20 +81,20 @@
     <ul>
 		<li>Ejercicios en revisión
         <ul>
-		  <li><a href="bean/accionesdepartamentos.jsp">Acciones departamentos</a></li>
-		  <li><a href="bean/buscarapellido.jsp">Buscar apellido</a></li>
-		  <li><a href="bean/combo.jsp">Combo</a></li>
-		  <li><a href="bean/datosregistro.jsp">Datos registro</a></li>
-		  <li><a href="bean/errores.jsp">Errores</a></li>
-		  <li><a href="bean/formulario.jsp">Formulario</a></li>		  
-		  <li><a href="bean/formulario2.jsp">Formulario2</a></li>
-		  <li><a href="bean/hospitales.jsp">Hospitales</a></li>
-		  <li><a href="bean/inscripcion.jsp">Inscripcion</a></li>
-		  <li><a href="bean/menudinamico.jsp">Menu dinamico</a></li>
-		  <li><a href="bean/otra.jsp">Otra</a></li>
-		  <li><a href="bean/plantilla.jsp">Plantilla</a></li>
-		  <li><a href="bean/salariomayor.jsp">Salario mayor</a></li>
-		  <li><a href="bean/usodebean.jsp">Uso bean</a></li>
+		  <li><a href="../bean/accionesdepartamentos.jsp">Acciones departamentos</a></li>
+		  <li><a href="../bean/buscarapellido.jsp">Buscar apellido</a></li>
+		  <li><a href="../bean/combo.jsp">Combo</a></li>
+		  <li><a href="../bean/datosregistro.jsp">Datos registro</a></li>
+		  <li><a href="../bean/errores.jsp">Errores</a></li>
+		  <li><a href="../bean/formulario.jsp">Formulario</a></li>		  
+		  <li><a href="../bean/formulario2.jsp">Formulario2</a></li>
+		  <li><a href="../bean/hospitales.jsp">Hospitales</a></li>
+		  <li><a href="../bean/inscripcion.jsp">Inscripcion</a></li>
+		  <li><a href="../bean/menudinamico.jsp">Menu dinamico</a></li>
+		  <li><a href="../bean/otra.jsp">Otra</a></li>
+		  <li><a href="../bean/plantilla.jsp">Plantilla</a></li>
+		  <li><a href="../bean/salariomayor.jsp">Salario mayor</a></li>
+		  <li><a href="../bean/usodebean.jsp">Uso bean</a></li>
 		  </ul>
       </li>  
     </ul>

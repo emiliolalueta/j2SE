@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="../css/panel.css" rel="stylesheet" type="text/css" />
     </head>
     <script languaje ="javascript">
         function crearOrden(campo)
@@ -34,6 +35,8 @@
         }
         </script>
     <body>
+     <div id="invisible"> 
+     <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
         <form name="form1" method="POST">
             <%
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
@@ -73,5 +76,8 @@
         %>
              <%=tabla%>
         </form>
+        </div>
+        
+        <jsp:include page="menus/menu.jsp" flush="true"/>
     </body>
 </html>

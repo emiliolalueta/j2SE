@@ -22,6 +22,7 @@ import="java.io.*"%>
         <title>JSP Page</title>
     </head>
     <body>
+    
         <form method="POST" enctype="multipart/form-data">
             <table border="6">
                 <tr>

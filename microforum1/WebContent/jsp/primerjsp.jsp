@@ -9,9 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../css/panel.css" rel="stylesheet" type="text/css" />
         <title>JSP Page</title>
     </head>
     <body>
+    
+    <div id="invisible"> 
+    <jsp:include page="menus/horizontaldemas.jsp" flush="true"/><br><br><br>
     	<form name="form1" method="POST">   
         <h1>Hello World!</h1>
         <div style="float:left">
@@ -42,14 +46,14 @@
                				<h1>Es impar</h1>               				
                         <%}
                 }                
-           }%>     
-           
-           
-           
-           
-                       
+           }%>  
                  
         </div>
       </form>   
+      
+      </div>
+        
+      <jsp:include page="menus/menu.jsp" flush="true"/>
+      
     </body>
 </html>
