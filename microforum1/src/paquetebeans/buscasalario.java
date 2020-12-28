@@ -48,7 +48,7 @@ public class buscasalario
                 DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
                 Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
                 PreparedStatement pst=cn.prepareStatement("select salario from emp where apellido=?");
-                pst.setString(1,apellido.toUpperCase());
+                pst.setString(1,apellido);
                 ResultSet rs=pst.executeQuery();                
                if (rs.next()==true)
                {

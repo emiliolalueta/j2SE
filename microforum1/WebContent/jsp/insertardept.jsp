@@ -23,7 +23,7 @@ CREATE OR REPLACE PROCEDURE insertar_departamentos
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="form1" method="POST">
+        <form  method="get">
         <span>Numero</span>
         <input type="text" name="txtnumero" value="" /><br>
         <span>Nombre</span>
@@ -33,16 +33,27 @@ CREATE OR REPLACE PROCEDURE insertar_departamentos
         <input type="submit" value="Insertar" />
         
         
-        <%DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-        Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
-        
-        
-       
-        CallableStatement cst=cn.prepareCall("{call insertar_departamentos(?,?,?)}");
+        <% //action="form1"
         String deptno = request.getParameter("txtnumero");
         String nombre = request.getParameter("txtnombre");
         String localidad = request.getParameter("txtlocalidad");
-        cst.setInt(1, Integer.parseInt(deptno));
+        if(request.getParameter("txtnombre") !=null && 
+        	request.getParameter("txtlocalidad") !=null && 
+        	request.getParameter("txtnumero") !=null){        
+        
+        DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+        Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");
+               
+        Statement s=cn.createStatement();
+        ResultSet r=s.executeQuery("select count(dept_no) as cuenta from dept");
+        int contador;
+        r.next();
+        contador=r.getInt("cuenta");
+        
+       
+        CallableStatement cst=cn.prepareCall("{call insertar_departamentos(?,?,?)}");
+        
+        cst.setInt(1,contador+10 );  //Integer.parseInt(deptno);
         cst.setString(2, nombre);
         cst.setString(3,localidad);
         cst.registerOutParameter(1, java.sql.Types.INTEGER);
@@ -68,9 +79,9 @@ CREATE OR REPLACE PROCEDURE insertar_departamentos
                            </td>
                        <table/>
                       
-                       <%}
-                    rs.close();%>       
-        
+            <%}
+            rs.close();%>       
+        <%}%>
         
         </form>
     </body>

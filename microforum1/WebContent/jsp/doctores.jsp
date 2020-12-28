@@ -15,7 +15,7 @@
     </head>
     <body>
         <form name="form1" method="post">
-        <h1>Doctores del Hospital (En revision)</h1>
+        <h1>Doctores del Hospital </h1>
         <%
         DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
         Connection cn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","BBDD","BBDD");

@@ -19,23 +19,16 @@
         <%
         String nom=request.getParameter("txtapellido");
         int resp=0;
-        if(nom !=null)
-        {
-            resp=mibean.getSal(nom);}
+        if(nom !=null)  resp=mibean.getSal(nom);
             String resultado="";
             if(resp==-1){
-                resultado="<h1>sin resultado</h1>";
+                resultado+="<h1>sin resultado</h1>";
             }else{
-                resultado="<h1>Salario" + resp ;
-            }  
-            
-            
-            %>
-            <span>Salario:</span> 
-            
-                       
+                resultado+="<h1>Salario: " + resp + "</h1>" ;
+            }          
+          %>                       
             <%=resultado%>
-           } 
+            
         </form>
     </body>
 </html>

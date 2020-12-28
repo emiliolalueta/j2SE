@@ -18,7 +18,7 @@
         <%
         String combo="";
         String cmbemp="";
-        String consulta="select nombre from hospital";
+        String consulta="select nombre,hospital_cod from hospital";
         String dept=request.getParameter("cmbdept");
         if(dept==null){         
             combo=mibean.pintarCombo(consulta,"cmbdept","");

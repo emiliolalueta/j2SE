@@ -61,7 +61,8 @@
         Statement st=cn.createStatement();
         ResultSet rs = st.executeQuery(consulta);
         String dept_no=request.getParameter("cmbdept");
-        String combo="<selet name='cmbdept' onChange='document.form1.submit()'>";
+        
+        String combo="<selet name='cmbdept' onchange='document.form1.submit()'>";
         while(rs.next())
         {
             combo +="<option value='"+ rs.getString("DEPT_NO") + "'";
@@ -71,11 +72,14 @@
                 {
                     combo +="selected";
                 }
+            }else{
+            	dept_no=rs.getString("DEPT_NO");
+            	combo += " selected";
             }
             combo +=">" + rs.getString("DNOMBRE") + "</option>";
             
         }
-            combo +="</select><hr>";
+            combo +="</select><hr>"; 
             rs.close();
             %>
             Departamentos <%=combo%>

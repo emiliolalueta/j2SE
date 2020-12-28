@@ -27,10 +27,10 @@
         <td><a href="jsp/paginarpeliculas.jsp">Paginar peliculas</a> <br/></td>
         <td><a href="jsp/carrito_1.jsp">Carrito (En revision)</a> <br/></td>
         <td><a href="jsp/collat.jsp">Collat</a> <br/></td>        
-        <td><a href="jsp/departamentosempleadoscheck.jsp">Departamentos empleados check</a> <br/></td>
-        <td><a href="jsp/departamentosempleadoscheckjavascript.jsp">departamentos empleados check javascript (En revision)</a> <br/></td>
+        <td><a href="jsp/departamentosempleadoscheck.jsp">Departamentos empleados check</a><font color='red'>(Corregido)</font> <br/></td>
+        <td><a href="jsp/departamentosempleadoscheckjavascript.jsp">departamentos empleados check javascript</a><font color='red'>(Corregido)</font> <br/></td>
         <td><a href="jsp/directores.jsp">Directores</a> <br/></td>
-        <td><a href="jsp/doctores.jsp">Doctores</a> <br/></td>
+        <td><a href="jsp/doctores.jsp">Doctores</a><font color='red'>(Corregido)</font> <br/></td>
         <td><a href="jsp/ejemcheckbox.jsp">Ejemplo Checkbox</a> <br/></td>
         <td><a href="jsp/ejemplosession.jsp">Ejemplo Session</a> <br/></td>
         </tr>
@@ -53,22 +53,22 @@
         <td><a href="jsp/personalizarpaginacion.jsp">Ejemplo personalizar paginacion</a> <br/></td>        
         <td><a href="jsp/subordinados.jsp">Ejemplo subordinados (En revision)</a> <br/></td>
         <td><a href="jsp/verdatoseleccionados00.jsp">Ejemplo verdatoseleccionados (En revision)</a> <br/></td>
-        <td><a href="jsp/paginacionmezclados.jsp">Ejemplo paginacionmezcla (corregido)</a> <br/></td>        
+        <td><a href="jsp/paginacionmezclados.jsp">Ejemplo paginacionmezcla </a><font color='red'>(Corregido)</font> <br/></td>        
         </tr>
         </table>
         
         <h2>Ejercicios de servlets: (Estoy revisandolos)</h2> <br/>
         <table border="4" align="left" bgcolor="">
          <tr>
-        <td><a href="ejerciciosservlets/Consulta.jsp">Ejemplo consulta</a> <br/></td>
-        <td><a href="ejerciciosservlets/Consultadatos.jsp">Ejemplo consulta datos</a> <br/></td>
-        <td><a href="ejerciciosservlets/Galletas.jsp">Ejemplo galletas</a> <br/></td>
+        <td><a href="ejerciciosservlets/Consulta.html">Ejemplo consulta</a><font color='red'>(Corregido)</font> <br/></td>
+        <td><a href="ejerciciosservlets/Consultadatos.html">Ejemplo consulta datos</a><font color='red'>(Corregido)</font> <br/></td>
+        <td><a href="ejerciciosservlets/Galletas.html">Ejemplo galletas</a><font color='red'>(Corregido)</font> <br/></td>
         </tr>
         <tr>
-        <td><a href="ejerciciosservlets/generar.jsp">Ejemplo generar</a> <br/></td>
-        <td><a href="ejerciciosservlets/llamadaservlet.jsp">Ejemplo llamada servlet</a> <br/></td>
-        <td><a href="ejerciciosservlets/paginadoble.jsp">Ejemplo pagina doble</a> <br/></td>
-        <td><a href="ejerciciosservlets/tabladinamica.jsp">Ejemplo tabladinamica</a> <br/></td>
+        <td><a href="ejerciciosservlets/generar.html">Ejemplo generar</a> <font color='red'>(Corregido)</font><br/></td>
+        <td><a href="ejerciciosservlets/llamadaservlet.html">Ejemplo llamada servlet</a><font color='red'>(Corregido)</font> <br/></td>
+        <td><a href="ejerciciosservlets/paginadoble.html">Ejemplo pagina doble</a> <br/><font color='red'>(Corregido)</font></td>
+        <td><a href="ejerciciosservlets/tabladinamica.html">Ejemplo tabladinamica</a> <br/><font color='red'>(Corregido)</font></td>
         
          </tr>
         </table>
@@ -85,25 +85,25 @@
          <h2>Ejercicios de beans:(Estoy revisandolos)</h2> <br/>
              <table border="4" align="left" bgcolor="">
          <tr>
-         <td><a href="bean/accionesdepartamentos.jsp">Ejemplo acciones de partamentos</a> <br/> </td>  
-         <td><a href="bean/buscarapellido.jsp">Ejemplo buscar apellido</a> <br/></td>
-		 <td><a href="bean/combo.jsp">Ejemplo combo</a> <br/></td>
+         <td><a href="bean/accionesdepartamentos.jsp">Ejemplo acciones de partamentos</a><font color='red'>(Corregido)</font> <br/> </td>  
+         <td><a href="bean/buscarapellido.jsp">Ejemplo buscar apellido</a><font color='red'>(Corregido)</font> <br/></td>
+		 <td><a href="bean/combo.jsp">Ejemplo combo</a><font color='red'>(Corregido)</font> <br/></td>
          <td><a href="bean/datosregistro.jsp">Ejemplo datos registro</a> <br/>  </td>
          </tr>
         <tr>
          <td><a href="bean/errores.jsp">Ejemplo errores</a> <br/></td>
-         <td><a href="bean/formulario.jsp">Ejemplo formulario</a> <br/></td>
-         <td><a href="bean/formulario2.jsp">Ejemplo formulario2</a> <br/></td>
-         <td><a href="bean/hospitales.jsp">Ejemplo hospitales</a> <br/></td>
+         <td><a href="bean/formulario.jsp">Ejemplo formulario</a><font color='red'>(Corregido)</font> <br/></td>
+         <td><a href="bean/formulario2.jsp">Ejemplo formulario2</a><font color='red'>(Corregido)</font> <br/></td>
+         <td><a href="bean/hospitales.jsp">Ejemplo hospitales</a><font color='red'>(Corregido)</font> <br/></td>
          </tr>
         <tr>
-         <td><a href="bean/inscripcion.jsp">Ejemplo inscripcion</a> <br/> </td>
-         <td><a href="bean/menudinamico.jsp">Ejemplo menu dinamico</a> <br/>   </td>
+         <td><a href="bean/inscripcion.jsp">Ejemplo inscripcion</a> <font color='red'>(Corregido)</font><br/> </td>
+         <td><a href="bean/menudinamico.jsp">Ejemplo menu dinamico</a> <font color='red'>(Corregido)</font><br/>   </td>
          <td><a href="bean/otra.jsp">Ejemplo otra</a> <br/>   </td>
          <td><a href="bean/plantilla.jsp">Ejemplo plantilla</a> <br/>  </td>
          </tr>
         <tr> 
-         <td><a href="bean/salariomayor.jsp">Ejemplo salariomayor</a> <br/> </td>  
+         <td><a href="bean/salariomayor.jsp">Ejemplo salariomayor</a><font color='red'>(Corregido)</font> <br/> </td>  
          <td><a href="bean/usodebean.jsp">Ejemplo uso de bean</a> <br/>   </td>
          </tr>
         </table>

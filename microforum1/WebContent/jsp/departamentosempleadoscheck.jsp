@@ -11,8 +11,9 @@
     <head>
         <link type="text/css" rel="stylesheet" href="newcss.css">
         <script language="javascript" type="text/javascript">
+        
             function mostrarDatos()
-            {
+            {            	
                 //valor del departamento
                 var dept = document.form1.cmbdept.options[document.form1.cmbdept.selectedIndex].value;
                 var elem = document.form1.txtelem.value;
@@ -80,7 +81,7 @@
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(consulta);
         
-        String combo = "<select name='cmbdept' onchange='document.form1.submit()'>";
+        String combo = "<select name='cmbdept' onchange='document.form1.submit()'>";  
         while (rs.next())
         {
             combo += "<option value='"+rs.getString("DEPT_NO")+"'";
@@ -90,6 +91,9 @@
                 {
                     combo += " selected";
                 }
+            }else{
+            	dept_no=rs.getString("DEPT_NO");
+            	combo += " selected";
             }
             combo += ">" + rs.getString("DNOMBRE") + "</option>";
         }
@@ -99,10 +103,12 @@
         Departamentos <%=combo%>
 
         <%
-        if (request.getParameter("datos")!= null)
+        //if (request.getParameter("datos")!= null)
+        if (request.getParameter("chkemp")!= null)	
+        
         {
-            elementos = elementos.substring(0,elementos.lastIndexOf(","));
-            consulta = "SELECT COUNT(EMP_NO) AS PERSONAS, SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA FROM EMP WHERE DEPT_NO IN (" + request.getParameter("cmbdept") + ")";
+            elementos = elementos.substring(0,elementos.lastIndexOf(","));            
+            consulta = "SELECT COUNT(EMP_NO) AS PERSONAS, SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA FROM EMP WHERE DEPT_NO IN (" + request.getParameter("cmbdept") + ") AND EMP_NO IN (" + request.getParameter("chkemp") + ")";
             rs = st.executeQuery(consulta);
             Double personas, suma, media;
             rs.next();
@@ -160,7 +166,7 @@
             }
             tabla += "</table>";
         %>
-        <input type="button" value="Mostrar resumen" onclick="mostrarDatos()"/><br>
+        <input type="submit" value="Mostrar resumen" onclick="mostrarDato()"/><br>
         <%=tabla%>
         <%}
         if (elementos!=null)
