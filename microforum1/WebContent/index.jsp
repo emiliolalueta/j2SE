@@ -38,7 +38,7 @@
         <td><a href="jsp/fileupload.jsp">Ejemplo fileupload (En revision)</a> <br/></td>
         <td><a href="jsp/graficosalarial.jsp">Ejemplo graficosalarial</a> <br/></td>
         <td><a href="jsp/hospitales.jsp">Ejemplo hospitales</a> <br/></td>
-        <td><a href="jsp/insertardept.jsp">Ejemplo insertardept (En revision)</a> <br/></td>
+        <td><a href="jsp/insertardept.jsp">Ejemplo insertardept</a><font color='red'>(Corregido)</font> <br/></td>
         <td><a href="jsp/ordenartabla2.jsp">Ejemplo ordenartabla</a> <br/></td>
         <td><a href="jsp/pagina.html">Ejemplo pagina</a> <br/></td>
         <td><a href="jsp/paginacion.jsp">Ejemplo paginacion (En revision)</a> <br/></td>

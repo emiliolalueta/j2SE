@@ -7,14 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.sql.CallableStatement"%>
-/***********************************************
-CREATE OR REPLACE PROCEDURE insertar_departamentos
-(num out int,nom dept.dnombre%type,loc dept.loc%type) as
-        BEGIN                 
-                insert into dept VALUES(num,nom,loc);  
-                commit;
-        END;        
-***************************************/
+
 
 <!DOCTYPE html>
 <html>
@@ -23,6 +16,19 @@ CREATE OR REPLACE PROCEDURE insertar_departamentos
         <title>JSP Page</title>
     </head>
     <body>
+    
+    <!-- 
+     CREAR EL PROCEDIMIENTO EJECUTANDO ESTO EN ORACLE
+    /***********************************************
+CREATE OR REPLACE PROCEDURE insertar_departamentos
+(num dept.dept_no%type,nom dept.dnombre%type,loc dept.loc%type) as
+        BEGIN                 
+                insert into dept VALUES(num,nom,loc);  
+                commit;
+        END;        
+***************************************/    
+     -->
+    
         <form  method="get">
         <span>Numero</span>
         <input type="text" name="txtnumero" value="" /><br>
@@ -53,33 +59,27 @@ CREATE OR REPLACE PROCEDURE insertar_departamentos
        
         CallableStatement cst=cn.prepareCall("{call insertar_departamentos(?,?,?)}");
         
-        cst.setInt(1,contador+10 );  //Integer.parseInt(deptno);
+        cst.setInt(1,contador+10 );  
         cst.setString(2, nombre);
         cst.setString(3,localidad);
+        
         cst.registerOutParameter(1, java.sql.Types.INTEGER);
         cst.registerOutParameter(2, java.sql.Types.NVARCHAR);
         cst.registerOutParameter(3, java.sql.Types.NVARCHAR);
         cst.execute();
         
         Statement st=cn.createStatement();
-        ResultSet rs=st.executeQuery("select nombre,hospital_cod from hospital");
+        ResultSet rs=st.executeQuery("select dnombre,loc from dept");
+        %><table border="6"><%
         while (rs.next())
-                       {%>
-                       <table border="6">
-                           <td>
-                               <tr>
-                                    <%=rs.getString("dept_no")%>
-                               </tr>
-                               <tr>
-                                    <%=rs.getString("dept_no")%>
-                                </tr>
-                                <tr>
-                                    <%=rs.getString("dept_no")%>
-                                </tr>    
-                           </td>
-                       <table/>
+                       {%>                       
+                           <tr>
+                               <td><%=rs.getString("dnombre")%></td>
+                               <td><%=rs.getString("loc")%></td>                               
+                           </tr>                      
                       
             <%}
+        	%><table/><%
             rs.close();%>       
         <%}%>
         
