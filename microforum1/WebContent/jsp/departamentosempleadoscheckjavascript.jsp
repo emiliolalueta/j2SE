@@ -62,7 +62,7 @@
         ResultSet rs = st.executeQuery(consulta);
         String dept_no=request.getParameter("cmbdept");
         
-        String combo="<selet name='cmbdept' onchange='document.form1.submit()'>";
+        String combo="<select name='cmbdept' onchange='document.form1.submit()'>";
         while(rs.next())
         {
             combo +="<option value='"+ rs.getString("DEPT_NO") + "'";

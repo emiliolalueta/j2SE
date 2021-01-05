@@ -107,8 +107,14 @@
         if (request.getParameter("chkemp")!= null)	
         
         {
-            elementos = elementos.substring(0,elementos.lastIndexOf(","));            
-            consulta = "SELECT COUNT(EMP_NO) AS PERSONAS, SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA FROM EMP WHERE DEPT_NO IN (" + request.getParameter("cmbdept") + ") AND EMP_NO IN (" + request.getParameter("chkemp") + ")";
+            //elementos = elementos.substring(0,elementos.lastIndexOf(",")); 
+            
+            while(elementos.charAt(elementos.length()-1)==','){
+            	elementos = elementos.substring(0,elementos.length()-2); 
+            }
+            
+            //consulta = "SELECT COUNT(EMP_NO) AS PERSONAS, SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA FROM EMP WHERE DEPT_NO IN (" + request.getParameter("cmbdept") + ") AND EMP_NO IN (" + request.getParameter("chkemp") + ")";
+            consulta = "SELECT COUNT(EMP_NO) AS PERSONAS, SUM(SALARIO) AS SUMA, AVG(SALARIO) AS MEDIA FROM EMP WHERE DEPT_NO IN (" + request.getParameter("cmbdept") + ") AND EMP_NO IN (" + elementos + ")";
             rs = st.executeQuery(consulta);
             Double personas, suma, media;
             rs.next();

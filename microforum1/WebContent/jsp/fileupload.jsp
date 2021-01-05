@@ -15,6 +15,7 @@ import="org.apache.commons.fileupload.*"
 import="org.apache.commons.fileupload.servlet.*"
 import="org.apache.commons.fileupload.disk.*"
 import="java.io.*"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +23,7 @@ import="java.io.*"%>
         <title>JSP Page</title>
     </head>
     <body>
+    
         <form method="POST" enctype="multipart/form-data">
             <table border="6">
                 <tr>
@@ -37,10 +39,10 @@ import="java.io.*"%>
                 </tr>               
             </table>
         </form>
-        <%
+       <%
         String rutaservidor=application.getRealPath("/ficheros/");%>
-        <h1><%=rutaservidor%></h1>
-        <%File destino=new File(rutaservidor);
+<h1><%=rutaservidor%></h1>
+<%File destino=new File(rutaservidor);
         ServletRequestContext src=new ServletRequestContext(request);
         if(ServletFileUpload.isMultipartContent(src))
         {
@@ -66,6 +68,8 @@ import="java.io.*"%>
                  <%}                
             }
         }
-        %>
+        %> 
+        
+        
     </body>
 </html>
