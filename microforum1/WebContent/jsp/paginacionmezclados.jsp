@@ -22,6 +22,15 @@
               document.form1.txtnumpaginas.value=document.form1.lstnumpaginas.value;
               
     	}    
+
+    	function botones(){
+  		  var orden=document.form1.lstorden.value;            
+            document.form1.txtorden.value=document.form1.lstorden.value;  
+            
+            var orde=document.form1.lstnumpaginas.value;            
+            document.form1.txtnumpaginas.value=document.form1.lstnumpaginas.value;
+            document.form1.submit();
+  	}    
         
         
       </script>
@@ -97,7 +106,7 @@
          -->
         <%
         String Combo="";
-        Combo += "<select name='lstorden' onchange='crearOrden()'>";
+        Combo += "<select name='lstorden' onchange='botones()'>";
        	if (orden.equals("apellido")){
        		Combo += "<option selected>apellido</option>";
        	}else{
@@ -130,7 +139,7 @@
          -->
                  <%
         String Combo2="";
-        Combo2 +="<select name='lstnumpaginas' onchange='crearOrden()'>";
+        Combo2 +="<select name='lstnumpaginas' onchange='botones()'>";
         if (orde.equals("5")){
        		Combo2 += "<option selected>5</option>";
        	}else{

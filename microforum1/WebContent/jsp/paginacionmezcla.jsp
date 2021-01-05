@@ -14,13 +14,19 @@
         <title>JSP Page</title>
     </head>
     <script languaje ="javascript">
-        function crearOrden()
+    	function inicializar()
+    	{
+    		document.form1.primero.value=true;
+    	}
+    	
+    	function crearOrden()
         {                                    
             var orden=document.form1.lstorden.value;
             var orde=document.form1.lstnumpaginas.value;            
             
             document.form1.seleccionado.value=orden;
-            document.form1.registros.value=orde;   
+            document.form1.registros.value=orde;  
+            document.form1.primero.value=false;
             document.form1.submit();
         }
       </script>
@@ -33,6 +39,13 @@
         String consulta;
         int posicion;
         int numeroregistros=0;
+        boolean primero;
+        if (request.getParameter("primero")!=null)
+        {
+        	primero=Boolean.parseBoolean(request.getParameter("primero"));
+        }else{
+        	primero=true;
+        }
         if (request.getParameter("posicion")!=null)
         {
             posicion=Integer.parseInt(request.getParameter("posicion"));
@@ -95,7 +108,7 @@
         {
             int aux=i+1;
             //tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "'>" + numpagina + "</a>&nbsp;";
-            tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "&orden=" + seleccionado + "&paginacion=" + seleccionado2 +"'>" + numpagina + "</a>&nbsp;";
+            tabla +="<a href='paginacionmezcla.jsp?posicion=" + aux + "&orden=" + seleccionado + "&paginacion=" + seleccionado2 +"' onclick='inicializar()'>" + numpagina + "</a>&nbsp;";
             numpagina++;        
         }%>
         <span>Orden</span>
@@ -106,14 +119,23 @@
             <option>salario</option>
         </select>
          -->
-        <% String Combo="";
+        <% 
+        boolean primera_vez=true;
+        if(posicion>1 && primera_vez){
+        	seleccionado = orden;
+        	seleccionado2 = paginacion;
+        }else{
+        	primera_vez=false;
+        }
+        String Combo="";
         if (seleccionado == null){
         	Combo += "<select name='lstorden' onchange='crearOrden()'>";
         	Combo += "<option>apellido</option>";
         	Combo += "<option>oficio</option>";
         	Combo += "<option>salario</option>";
         	Combo += "</select>";
-        }else{
+        }else
+        {
         	Combo += "<select name='lstorden' onchange='crearOrden()'>";
         	if (seleccionado.equals("apellido")){
         		Combo += "<option selected>apellido</option>";
@@ -130,6 +152,7 @@
         	}else{
         		Combo += "<option>salario</option>";
         	}
+        	
         	Combo += "</select>";
         }
         %>
@@ -180,6 +203,7 @@
           
           <input type="text" name="seleccionado" value="<%=seleccionado%>" />
           <input type="text" name="registros" value="<%=registros%>" />
+          <input type="text" name="primero" value="<%=primero%>"/>
           
          <%}catch(Exception ex)
           {%><h1>Error<%=ex.toString()%></h1>>
