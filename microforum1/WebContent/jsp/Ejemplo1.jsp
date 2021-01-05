@@ -57,7 +57,7 @@ window.onload = function ()
 	document.getElementById("cajaApellido").addEventListener("blur", validarApellido);
 	document.getElementById("Comboficio").addEventListener("blur", validarOficio);
 	document.getElementById("ComboDirector").addEventListener("blur", validarDirector);
-//	document.getElementById("cajaFecha").addEventListener("blur", validarFecha);
+	//document.getElementById("cajaFecha").addEventListener("blur", validarFecha);
 	document.getElementById("cajaSalario").addEventListener("blur", validarSalario);
 	document.getElementById("cajaComision").addEventListener("blur", validarComision);
 	document.getElementById("ComboDepartamentos").addEventListener("blur", validarDepartamentos);
@@ -144,9 +144,9 @@ function validarFecha(elEvento){
 	Fecha.innerHTML = '';
 	var valor = cajaFecha.value;
 	var retorno =true;
-	if (/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/.test(Fecha.value)==false || valor==''){
+	if (/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(Fecha.value)==false || valor==''){
 		document.getElementById('Fecha').style.visibility = 'visible';
-		Fecha.innerHTML = '<h7>Formato fecha invalida AAAA-MM-DD</h7>';
+		Fecha.innerHTML = '<h7>Formato fecha invalida dd/mm/yy</h7>';
 		elEvento.preventDefault();
 		retorno=false;
 	}
@@ -211,7 +211,7 @@ function validar(elEvento){
 </script>
 </head>
 <body>
-	<form name="form" method="post">
+	<form name="form" id="form" method="post">
 		<!-- <fieldset>
 			<legend>Datos del empleado</legend>
 			 -->
@@ -358,6 +358,8 @@ function validar(elEvento){
 				<td Colspan=2><button type="submit">Añadir</button></td>
 				</tr>		
 			</table> 
+			</form>
+			<form name="form1" id="form1" method="post">
 			<table id="segundatabla" border="2">
 					<tr>
 						<th>Num. Empleado</th>
@@ -404,6 +406,9 @@ function validar(elEvento){
 							} %>
 					
 					<%}%>
+				<tr>
+				<td Colspan=2><button type="submit">Insertar</button></td>
+				</tr>		
 
 										
 			</table>
