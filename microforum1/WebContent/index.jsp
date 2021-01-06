@@ -55,6 +55,7 @@
         <td><a href="jsp/verdatoseleccionados00.jsp">Ejemplo verdatoseleccionados (En revision)</a> <br/></td>
         <td><a href="jsp/paginacionmezclados.jsp">Ejemplo paginacionmezcla </a><font color='red'>(Corregido)</font> <br/></td>        
         <td><a href="jsp/validaformulario.jsp">Ejemplo validacion de formulario con javascript</a><font color='red'>(Nuevo)</font> <br/></td>
+        <td><a href="jsp/tablajavascript.jsp">Ejemplo tabla dinamica con javascript</a><font color='red'>(Nuevo)</font> <br/></td>
         </tr>
         </table>
         
