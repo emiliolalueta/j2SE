@@ -11,8 +11,14 @@
 .centrar{
 	float: center;
 }
+#form{
+	position:fixed;
+}
+#form1{
+	padding-left:500px;
+}
 #primeratabla{
-	float: left;
+	
 	text-align: left;
 	background-color: #f96;
 	width: 500px;
@@ -21,7 +27,6 @@
 }
 #segundatabla{
 
-	margin-top: 5px;
 	background-color: #f96;
 	width: 60px;
 	margin-top: 5px;
@@ -211,6 +216,7 @@ function validar(elEvento){
 </script>
 </head>
 <body>
+	
 	<form name="form" id="form" method="post">
 		<!-- <fieldset>
 			<legend>Datos del empleado</legend>
@@ -442,6 +448,7 @@ function validar(elEvento){
 	<input type="hidden" name="txtelem" value="<%=elementos%>"/>
 
 	</form>
+
 	
 </body>
 </html>
