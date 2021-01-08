@@ -333,6 +333,8 @@ function add_row()
 				"<input type='button' id='save_button"+table_len+"' value='Save' class='save' onclick='save_row("+table_len+")'> " +
 				"<input type='button' value='Delete' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
 
+ document.getElementById("save_button"+table_len).style.display="none";
+ 
  document.getElementById("numempleado").value="";
  document.getElementById("cajaApellido").value="";
  document.getElementById("Comboficio").value="";

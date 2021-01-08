@@ -19,6 +19,7 @@
 }
 #primeratabla{
 	
+	float:left;
 	text-align: left;
 	background-color: #f96;
 	width: 500px;
@@ -32,7 +33,7 @@
 	margin-top: 5px;
 	border: 2px #f30 solid;
 }
-button {
+.add, button {
   padding: 19px 39px 18px 39px;
   color: #FFF;
   background-color: #4bc970;
@@ -361,11 +362,11 @@ function validar(elEvento){
 				</tr>
 				<tr id="Departamentos"></tr>
 				<tr>
-				<td Colspan=2><button type="submit">Añadir</button></td>
+				
+				<td Colspan=2><input type="button" class="add" onclick="add_row();" value="Añadir"></td>
 				</tr>		
 			</table> 
-			</form>
-			<form name="form1" id="form1" method="post">
+
 			<table id="segundatabla" border="2">
 					<tr>
 						<th>Num. Empleado</th>
