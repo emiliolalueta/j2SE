@@ -128,5 +128,15 @@
          <td><a href="html/pagina9.html">Ejemplo pagina9</a> <br/>  </td>
          </tr>
         </table>
+        <br/><br/> <br/><br/> <br/><br/>
+         <h2>Realizados Miguel</h2> <br/>
+          <table border="4" align="left" bgcolor="">
+         <tr>
+         <td><a href="jsp/Practica1.jsp">Ejemplo jsp y con cookies </a> <br/></td>
+         <td><br/></td>
+         <td> <br/></td>
+           </tr>
+        </table>
+        
     </body>
 </html>
