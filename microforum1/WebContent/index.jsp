@@ -128,8 +128,32 @@
          <td><a href="html/pagina9.html">Ejemplo pagina9</a> <br/>  </td>
          </tr>
         </table>
+        
+       
         <br/><br/> <br/><br/> <br/><br/>
-         <h2>Realizados Miguel</h2> <br/>
+         <h2> <font color='red'>Nuevo tema==> </font>Ejercicios de Custom Tag:  (Estoy revisandolos)</h2> <br/>
+         <h5>NOTA IMPORTANTE: </h5><h6>Para que funcionen los enlaces de esta tabla, 
+         	 importar el proyecto microforum2 (en la carpeta git) y añadirlo al servidor tomcat. </h6><br/>
+         <table border="4" align="left" bgcolor="">
+         <tr>
+         <td><a href="../microforum2/index.jsp">Index</a> <font color='red'>(Corregido)</font><br/>  </td>
+         <td><a href="../microforum2/parametros.jsp">Parametros</a> <br/>  </td>
+         <td><a href="../microforum2/futbol.jsp">Futbol</a> <br/> </td> 
+         </tr>
+        <tr>
+         <td><a href="../microforum2/listaalumnos.jsp">Lista alumnos</a> <font color='red'>(Corregido)</font><br/>  </td>         
+         <td><a href="../microforum2/listaalumnossax.jsp">Lista alumnos sax</a> <br/> </td> 
+         <td><a href="../microforum2/listaempleados.jsp">Lista empleados</a> <font color='red'>(Corregido)</font><br/> </td> 
+         </tr>
+        <tr>
+         <td><a href="../microforum2/selecciondepartamento.jsp">Seleccion departamento</a> <font color='red'>(Corregido)</font><br/>  </td>
+         
+         </tr>
+        </table>
+        
+         <br/><br/> <br/><br/> <br/><br/>
+         <h1>Practicas realizadas por Miguel</h1>        
+         
           <table border="4" align="left" bgcolor="">
          <tr>
          <td><a href="jsp/Practica1.jsp">Ejemplo jsp y con cookies </a> <br/></td>

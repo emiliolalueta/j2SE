@@ -1,0 +1,23 @@
+<alumnos>
+	<alumno>
+		<nombre>Pedro</nombre>
+		<apellidos>Lopez Vazquez</apellidos>
+		<calificacion>7</calificacion>
+	</alumno>
+	<alumno>
+		<nombre>Juan</nombre>
+		<apellidos>Garcia Carballo</apellidos>
+		<calificacion>8</calificacion>
+	</alumno>
+	<alumno>
+		<nombre>Alberto</nombre>
+		<apellidos>Fernandez Perez</apellidos>
+		<calificacion>9</calificacion>
+	</alumno>
+	<alumno>
+		<nombre>Pepe</nombre>
+		<apellidos>Gutierrez Martinez</apellidos>
+		<calificacion>5</calificacion>
+	</alumno>
+
+</alumnos>
